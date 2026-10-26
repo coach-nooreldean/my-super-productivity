@@ -2845,6 +2845,7 @@
       "IS_CONFIRM_BEFORE_DELETE": "تأكيد قبل حذف المهام",
       "IS_MARKDOWN_FORMATTING_IN_NOTES_ENABLED": "تمكين تنسيق Markdown في ملاحظات المهام",
       "IS_TRAY_SHOW_CURRENT": "إظهار المهمة الحالية في الدرج / قائمة الحالة (سطح المكتب فقط)",
+      "IS_COMPACT_SUB_TASKS_VIEW": "نمط عرض مدمج للمهام الفرعية (تقليل التشتت البصري داخل كارد المهمة)",
       "NOTES_TEMPLATE": "قالب وصف المهمة",
       "TITLE": "المهام"
     },

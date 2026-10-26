@@ -92,6 +92,7 @@ export type TasksConfig = Readonly<{
    * older data lacks it; readers fall back to `'chevrons'` for missing/unknown.
    */
   priorityIconPreset?: string;
+  isCompactSubTasksView?: boolean;
 }>;
 
 export type ShortSyntaxConfig = Readonly<{

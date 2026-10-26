@@ -406,6 +406,33 @@ done-toggle {
   }
 }
 
+:host.isCompactSubTasksView {
+  .toggle-sub-tasks-btn.toggle-sub-tasks-btn {
+    left: -14px;
+    width: 20px !important;
+    height: 20px !important;
+    border-radius: 50%;
+    border: 1px solid var(--extra-border-color);
+    background: var(--card-bg) !important;
+
+    @include darkTheme {
+      background: var(--bg-lighter) !important;
+    }
+
+    mat-icon {
+      font-size: 14px;
+      width: 14px;
+      height: 14px;
+      line-height: 14px;
+    }
+
+    .sub-task-progress-badge {
+      font-size: 9px;
+      margin-top: 8px;
+    }
+  }
+}
+
 .attachment-btn,
 .show-additional-info-btn {
   mat-icon {
