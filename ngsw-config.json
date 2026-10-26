@@ -20,6 +20,7 @@
           "/assets/icons/favicon-*.png",
           "/assets/i18n/en.json",
           "/media/material-symbols-outlined-*.woff2",
+          "/media/Dubai-*.woff2",
           "/*.(otf|ttf|woff|woff2)"
         ]
       }
