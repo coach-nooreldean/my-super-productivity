@@ -1072,7 +1072,9 @@
         "LINK_LABEL": "Proiecte arhivate",
         "SEARCH": "Caută proiecte arhivate",
         "UNARCHIVE": "Restaurează proiectul"
-      }
+      },
+      "VIEW_LIST": "Comutare la vizualizarea listă",
+      "VIEW_KANBAN": "Comutare la vizualizarea Kanban"
     },
     "PROJECT_FOLDER": {
       "CONFIRM_DELETE": "Ești sigur că vrei să ștergi folderul \"{{title}}\"? Toate proiectele din acest folder vor fi mutate la nivelul rădăcină.",

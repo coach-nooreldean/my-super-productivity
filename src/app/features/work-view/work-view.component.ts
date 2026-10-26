@@ -106,6 +106,8 @@ import { PluginIndexComponent } from '../../plugins/ui/plugin-index/plugin-index
 import { PluginBridgeService } from '../../plugins/plugin-bridge.service';
 import { PlainspaceClaimPoolComponent } from '../plainspace/claim-pool/claim-pool.component';
 import { PlainspaceSharedTask } from '../plainspace/plainspace-shared-task.model';
+import { KanbanBoardComponent } from './kanban-board/kanban-board.component';
+import { ProjectViewModeService } from '../project/project-view-mode.service';
 
 // Stable reference used as the toSignal initial value below so the deselect
 // effect can tell "the customized list hasn't emitted yet" apart from a
@@ -149,6 +151,7 @@ const INITIAL_CUSTOMIZED_UNDONE_TASKS: CustomizedUndoneTasks = { list: [] };
     PluginIndexComponent,
     PlainspaceClaimPoolComponent,
     PlannerCalendarEventComponent,
+    KanbanBoardComponent,
   ],
 })
 export class WorkViewComponent implements OnInit, OnDestroy {
@@ -161,6 +164,7 @@ export class WorkViewComponent implements OnInit, OnDestroy {
   sectionService = inject(SectionService);
   customizerService = inject(TaskViewCustomizerService);
   workContextService = inject(WorkContextService);
+  projectViewModeService = inject(ProjectViewModeService);
   private _activatedRoute = inject(ActivatedRoute);
   private _projectService = inject(ProjectService);
   private _cd = inject(ChangeDetectorRef);

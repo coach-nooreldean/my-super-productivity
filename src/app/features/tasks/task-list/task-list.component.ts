@@ -708,6 +708,9 @@ export class TaskListComponent implements OnDestroy, AfterViewInit {
           afterTaskId,
           sourceSectionId,
         );
+        if (src === 'DONE') {
+          this._taskService.setUnDone(taskId);
+        }
         return;
       }
       if (srcIsSection) {
@@ -732,6 +735,9 @@ export class TaskListComponent implements OnDestroy, AfterViewInit {
           workContextType,
           afterTaskId,
         );
+        if (target === 'DONE') {
+          this._taskService.setDone(taskId);
+        }
         return;
       }
     }

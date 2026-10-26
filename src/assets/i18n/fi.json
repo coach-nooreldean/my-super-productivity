@@ -1036,7 +1036,9 @@
         "LINK_LABEL": "Arkistoidut projektit",
         "SEARCH": "Hae arkistoituja projekteja",
         "UNARCHIVE": "Palauta projekti"
-      }
+      },
+      "VIEW_LIST": "Vaihda luettelonäkymään",
+      "VIEW_KANBAN": "Vaihda Kanban-näkymään"
     },
     "PROJECT_FOLDER": {
       "CONFIRM_DELETE": "Haluatko varmasti poistaa kansion \"{{title}}\"? Kaikki tämän kansion projektit siirretään pääkansioon.",

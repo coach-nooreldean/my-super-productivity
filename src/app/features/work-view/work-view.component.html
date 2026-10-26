@@ -146,7 +146,14 @@
                _expandCollapsedContainerFor(): the search reveal has to open
                whichever container holds the target, and it mirrors these
                conditions to know which ones are on screen. (#8780) -->
-          @if (customizedUndoneTasks(); as customized) {
+          @if (projectViewModeService.isKanbanView()) {
+            <kanban-board
+              [sections]="sections()"
+              [undoneTasksBySection]="undoneTasksBySection()"
+              [doneTasks]="doneTasks()"
+              [undoneTasks]="undoneTasks()"
+            ></kanban-board>
+          } @else if (customizedUndoneTasks(); as customized) {
             @if (customized.groups) {
               @for (group of customized.groups; track group.key) {
                 <collapsible
@@ -340,7 +347,7 @@
             </div>
           }
 
-          @if (hasDoneTasks()) {
+          @if (hasDoneTasks() && !projectViewModeService.isKanbanView()) {
             @let nrOfDoneArchived =
               doneTasks()?.length === 0
                 ? (workContextService.doneTodayArchived$ | async)

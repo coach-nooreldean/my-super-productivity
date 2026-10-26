@@ -1050,7 +1050,9 @@
         "LINK_LABEL": "보관된 프로젝트",
         "SEARCH": "보관된 프로젝트 검색",
         "UNARCHIVE": "프로젝트 복원"
-      }
+      },
+      "VIEW_LIST": "목록 보기로 전환",
+      "VIEW_KANBAN": "칸반 보기로 전환"
     },
     "PROJECT_FOLDER": {
       "CONFIRM_DELETE": "폴더 \"{{title}}\"을(를) 삭제하시겠습니까? 이 폴더의 모든 프로젝트가 최상위 수준으로 이동됩니다.",

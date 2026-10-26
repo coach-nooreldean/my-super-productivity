@@ -1053,7 +1053,9 @@
         "LINK_LABEL": "Archived projects",
         "SEARCH": "Search archived projects",
         "UNARCHIVE": "Restore project"
-      }
+      },
+      "VIEW_LIST": "Zur Listenansicht wechseln",
+      "VIEW_KANBAN": "Zur Kanban-Ansicht wechseln"
     },
     "PROJECT_FOLDER": {
       "CONFIRM_DELETE": "Möchtest du den Ordner \"{{title}}\" wirklich löschen? Alle Projekte in diesem Ordner werden auf die oberste Ebene verschoben.",

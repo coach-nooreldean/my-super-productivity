@@ -1041,7 +1041,9 @@
         "LINK_LABEL": "已封存專案",
         "SEARCH": "搜尋已封存專案",
         "UNARCHIVE": "還原專案"
-      }
+      },
+      "VIEW_LIST": "切換至清單檢視",
+      "VIEW_KANBAN": "切換至看板檢視"
     },
     "PROJECT_FOLDER": {
       "CONFIRM_DELETE": "您確定要刪除資料夾「{{title}}」嗎？此資料夾中的所有專案將移至根層級。",

@@ -1,0 +1,159 @@
+<div
+  class="kanban-container"
+  data-section-selection-scope
+>
+  <!-- No Section Column -->
+  <div class="kanban-column no-section-column">
+    <div class="column-header">
+      <div class="column-title-wrapper">
+        <span class="column-title">{{ T.G.WITHOUT_PROJECT | translate }}</span>
+        <span class="column-count-badge">{{
+          undoneTasksBySection().noSection.length
+        }}</span>
+      </div>
+    </div>
+
+    <div class="column-body">
+      <task-list
+        [tasks]="undoneTasksBySection().noSection"
+        [listId]="'PARENT'"
+        [listModelId]="'UNDONE'"
+        [noTasksMsg]="
+          undoneTasks().length ? (T.WW.NO_TASKS_IN_MAIN_LIST | translate) : undefined
+        "
+      ></task-list>
+    </div>
+
+    <div class="column-footer">
+      <add-task-inline></add-task-inline>
+    </div>
+  </div>
+
+  <!-- Sections Columns (Draggable) -->
+  <div
+    class="kanban-sections-wrapper"
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    [cdkDropListEnterPredicate]="acceptSectionDragOnly"
+    (cdkDropListDropped)="dropSection($event)"
+  >
+    @for (section of sections(); track section.id) {
+      <div
+        class="kanban-column section-column"
+        cdkDrag
+        [cdkDragData]="section"
+        [cdkDragStartDelay]="dragDelayForTouch()"
+        [cdkDragLockAxis]="'x'"
+      >
+        <div class="column-header">
+          <div
+            class="column-title-wrapper drag-handle"
+            cdkDragHandle
+          >
+            <mat-icon class="drag-icon">drag_indicator</mat-icon>
+            <span class="column-title">{{ section.title }}</span>
+            <span class="column-count-badge">{{
+              undoneTasksBySection().dict[section.id]?.length || 0
+            }}</span>
+          </div>
+
+          <div class="column-actions">
+            <button
+              mat-icon-button
+              [matMenuTriggerFor]="sectionMenu"
+              [attr.aria-label]="T.WW.SECTION_OPTIONS | translate"
+            >
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #sectionMenu="matMenu">
+              <button
+                mat-menu-item
+                (click)="editSection(section.id, section.title)"
+              >
+                <mat-icon>edit</mat-icon>
+                {{ T.G.EDIT | translate }}
+              </button>
+              <button
+                mat-menu-item
+                (click)="deleteSection(section.id)"
+              >
+                <mat-icon>delete</mat-icon>
+                {{ T.G.DELETE | translate }}
+              </button>
+            </mat-menu>
+          </div>
+        </div>
+
+        <div class="column-body">
+          <task-list
+            [tasks]="undoneTasksBySection().dict[section.id] || []"
+            [listId]="'PARENT'"
+            [listModelId]="section.id"
+          ></task-list>
+        </div>
+
+        <div class="column-footer">
+          <add-task-inline
+            (afterTaskAdd)="onTaskAddedToSection(section.id, $event)"
+          ></add-task-inline>
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Done Tasks Column -->
+  <div class="kanban-column done-column">
+    <div class="column-header">
+      <div class="column-title-wrapper">
+        <mat-icon class="done-header-icon">check_circle</mat-icon>
+        <span class="column-title">{{ T.WW.DONE_TASKS | translate }}</span>
+        <span class="column-count-badge">{{ doneTasks().length }}</span>
+      </div>
+
+      @if (doneTasks().length) {
+        <div class="column-actions">
+          <button
+            mat-icon-button
+            [matMenuTriggerFor]="doneMenu"
+            matTooltip="{{ T.WW.MOVE_DONE_TO_ARCHIVE | translate }}"
+          >
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #doneMenu="matMenu">
+            <button
+              mat-menu-item
+              (click)="moveDoneToArchive()"
+            >
+              <mat-icon>archive</mat-icon>
+              {{ T.WW.MOVE_DONE_TO_ARCHIVE | translate }}
+            </button>
+          </mat-menu>
+        </div>
+      }
+    </div>
+
+    <div class="column-body">
+      <task-list
+        [tasks]="doneTasks()"
+        [listId]="'PARENT'"
+        [listModelId]="'DONE'"
+      ></task-list>
+    </div>
+
+    <div class="column-footer">
+      <add-task-inline (afterTaskAdd)="onTaskAddedToDone($event)"></add-task-inline>
+    </div>
+  </div>
+
+  <!-- Add Section Column Button -->
+  <div class="add-section-column-wrapper">
+    <button
+      class="add-section-btn"
+      mat-stroked-button
+      (click)="addSection()"
+    >
+      <mat-icon>add</mat-icon>
+      {{ T.MH.ADD_SECTION | translate }}
+    </button>
+  </div>
+</div>

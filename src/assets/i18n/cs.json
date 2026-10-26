@@ -1079,7 +1079,9 @@
         "LINK_LABEL": "Archivované projekty",
         "SEARCH": "Hledat v archivovaných projektech",
         "UNARCHIVE": "Obnovit projekt"
-      }
+      },
+      "VIEW_LIST": "Přepnout na zobrazení seznamu",
+      "VIEW_KANBAN": "Přepnout na zobrazení Kanban"
     },
     "PROJECT_FOLDER": {
       "ADD_PROJECT": "Přidat projekt",

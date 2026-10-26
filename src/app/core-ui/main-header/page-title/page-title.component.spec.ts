@@ -442,7 +442,17 @@ describe('PageTitleComponent', () => {
     it('adds the Plainspace button for a shared project', async () => {
       typeAndId$.next({ activeId: 'p1', activeType: WorkContextType.PROJECT });
       isShared$.next(true);
-      expect(buttons(await renderAt('/project/p1/tasks')).length).toBe(3);
+      expect(buttons(await renderAt('/project/p1/tasks')).length).toBe(4);
+    });
+
+    it('adds the view-mode toggle button on project work view', async () => {
+      typeAndId$.next({ activeId: 'p1', activeType: WorkContextType.PROJECT });
+      expect(buttons(await renderAt('/project/p1/tasks'))).toContain(
+        'view-mode-toggle-btn',
+      );
+      expect(buttons(await renderAt('/project/p1/notes'))).not.toContain(
+        'view-mode-toggle-btn',
+      );
     });
 
     it('renders no actions on a special section', async () => {

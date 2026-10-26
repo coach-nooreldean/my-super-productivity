@@ -1050,7 +1050,9 @@
         "LINK_LABEL": "已归档项目",
         "SEARCH": "搜索已归档项目",
         "UNARCHIVE": "恢复项目"
-      }
+      },
+      "VIEW_LIST": "切换到列表视图",
+      "VIEW_KANBAN": "切换到看板视图"
     },
     "PROJECT_FOLDER": {
       "CONFIRM_DELETE": "确定要删除文件夹“{{title}}”吗？该文件夹内的所有项目将被移至根目录级别。",

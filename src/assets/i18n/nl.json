@@ -1036,7 +1036,9 @@
         "LINK_LABEL": "Gearchiveerde projecten",
         "SEARCH": "Gearchiveerde projecten zoeken",
         "UNARCHIVE": "Project herstellen"
-      }
+      },
+      "VIEW_LIST": "Overschakelen naar lijstweergave",
+      "VIEW_KANBAN": "Overschakelen naar Kanban-weergave"
     },
     "PROJECT_FOLDER": {
       "CONFIRM_DELETE": "Weet je zeker dat je de map \"{{title}}\" wilt verwijderen? Alle projecten in deze map worden naar het hoofdniveau verplaatst.",

@@ -1047,7 +1047,9 @@
       "D_CONFIRM_ARCHIVE": {
         "MSG": "Arhivirati projekt „{{title}}“? Zadaci, postavke ponavljanja i podsjetnici pauziraju se dok ga ne vratiš.",
         "OK": "Arhiviraj"
-      }
+      },
+      "VIEW_LIST": "Prebaci na prikaz popisa",
+      "VIEW_KANBAN": "Prebaci na Kanban prikaz"
     },
     "PROJECT_FOLDER": {
       "CONFIRM_DELETE": "Stvarno želiš izbrisati mapu \"{{title}}\"? Svi projekti iz nje će se prebaciti na root razinu.",

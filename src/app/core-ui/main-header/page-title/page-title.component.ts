@@ -27,6 +27,7 @@ import { KeyboardConfig } from '@sp/keyboard-config';
 import { PluginBridgeService } from '../../../plugins/plugin-bridge.service';
 import { PluginService } from '../../../plugins/plugin.service';
 import { PluginIconComponent } from '../../../plugins/ui/plugin-icon/plugin-icon.component';
+import { ProjectViewModeService } from '../../../features/project/project-view-mode.service';
 
 @Component({
   selector: 'page-title',
@@ -96,6 +97,30 @@ import { PluginIconComponent } from '../../../plugins/ui/plugin-icon/plugin-icon
             <mat-icon>more_vert</mat-icon>
           </button>
           @if (isWorkViewPage()) {
+            @if (isProject()) {
+              <button
+                class="view-mode-toggle-btn"
+                [class.isKanban]="projectViewModeService.isKanbanView()"
+                (click)="projectViewModeService.toggleViewMode()"
+                [matTooltip]="
+                  (projectViewModeService.isKanbanView()
+                    ? T.F.PROJECT.VIEW_LIST
+                    : T.F.PROJECT.VIEW_KANBAN
+                  ) | translate
+                "
+                [attr.aria-label]="
+                  (projectViewModeService.isKanbanView()
+                    ? T.F.PROJECT.VIEW_LIST
+                    : T.F.PROJECT.VIEW_KANBAN
+                  ) | translate
+                "
+                mat-icon-button
+              >
+                <mat-icon>{{
+                  projectViewModeService.isKanbanView() ? 'view_list' : 'view_week'
+                }}</mat-icon>
+              </button>
+            }
             <button
               class="task-filter-btn"
               [class.isCustomized]="taskViewCustomizerService.isCustomized()"
@@ -318,12 +343,29 @@ import { PluginIconComponent } from '../../../plugins/ui/plugin-icon/plugin-icon
         }
       }
 
+      .view-mode-toggle-btn {
+        position: relative;
+        color: var(--text-color-muted);
+        transition: all 0.2s ease;
+
+        &.isKanban {
+          color: var(--c-primary);
+        }
+
+        &:hover {
+          background-color: var(--state-hover);
+        }
+      }
+
       :host-context(.wrapper:hover) .project-settings-btn,
       :host-context(.wrapper:hover) .task-filter-btn:not(.isCustomized),
+      :host-context(.wrapper:hover) .view-mode-toggle-btn:not(.isKanban),
       :host-context(.wrapper:focus-within) .project-settings-btn,
       :host-context(.wrapper:focus-within) .task-filter-btn:not(.isCustomized),
+      :host-context(.wrapper:focus-within) .view-mode-toggle-btn:not(.isKanban),
       .page-title-actions:is(:hover, :focus-within) .project-settings-btn,
-      .page-title-actions:is(:hover, :focus-within) .task-filter-btn:not(.isCustomized) {
+      .page-title-actions:is(:hover, :focus-within) .task-filter-btn:not(.isCustomized),
+      .page-title-actions:is(:hover, :focus-within) .view-mode-toggle-btn:not(.isKanban) {
         color: var(--text-color);
       }
 
@@ -339,6 +381,7 @@ export class PageTitleComponent {
   private _router = inject(Router);
   private _workContextService = inject(WorkContextService);
   readonly taskViewCustomizerService = inject(TaskViewCustomizerService);
+  readonly projectViewModeService = inject(ProjectViewModeService);
   private readonly _configService = inject(GlobalConfigService);
   private _translateService = inject(TranslateService);
   private _store = inject(Store);
@@ -421,6 +464,9 @@ export class PageTitleComponent {
 
   isSpecialSection = computed(() => !!this._routeSection() || !!this.pluginId());
   isWorkViewPage = computed(() => /tasks$/.test(this._url()));
+  isProject = computed(
+    () => this.activeWorkContextTypeAndId()?.activeType === WorkContextType.PROJECT,
+  );
 
   displayTitle = computed(() => {
     const key = this._routeTitleKey();

@@ -1036,7 +1036,9 @@
         "LINK_LABEL": "Progetti archiviati",
         "SEARCH": "Cerca nei progetti archiviati",
         "UNARCHIVE": "Ripristina progetto"
-      }
+      },
+      "VIEW_LIST": "Passa alla visualizzazione elenco",
+      "VIEW_KANBAN": "Passa alla visualizzazione Kanban"
     },
     "PROJECT_FOLDER": {
       "CONFIRM_DELETE": "Sei sicuro di voler eliminare la cartella \"{{title}}\"? Tutti i progetti in questa cartella saranno spostati al livello principale.",

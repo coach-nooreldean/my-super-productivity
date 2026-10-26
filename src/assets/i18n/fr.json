@@ -1042,7 +1042,9 @@
         "LINK_LABEL": "Projets archivés",
         "SEARCH": "Rechercher dans les projets archivés",
         "UNARCHIVE": "Restaurer le projet"
-      }
+      },
+      "VIEW_LIST": "Passer en vue liste",
+      "VIEW_KANBAN": "Passer en vue Kanban"
     },
     "PROJECT_FOLDER": {
       "CONFIRM_DELETE": "Êtes-vous sûr de vouloir supprimer le dossier \"{{title}}\" ? Tous les projets dans ce dossier seront déplacés au niveau racine.",

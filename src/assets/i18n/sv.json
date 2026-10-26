@@ -1050,7 +1050,9 @@
         "LINK_LABEL": "Arkiverade projekt",
         "SEARCH": "Sök i arkiverade projekt",
         "UNARCHIVE": "Återställ projekt"
-      }
+      },
+      "VIEW_LIST": "Växla till listvy",
+      "VIEW_KANBAN": "Växla till Kanban-vy"
     },
     "PROJECT_FOLDER": {
       "CONFIRM_DELETE": "Är du säker på att du vill ta bort mappen \"{{title}}\"? Alla projekt i denna mapp kommer att flyttas till rotnivån.",

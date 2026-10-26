@@ -974,6 +974,8 @@
       "D_RENAME": {
         "PLACEHOLDER": "Enter project name"
       },
+      "VIEW_LIST": "Switch to List View",
+      "VIEW_KANBAN": "Switch to Kanban View",
       "COMPLETE": {
         "COMPLETED_ON": "Completed {{date}}",
         "REOPEN": "Reopen",

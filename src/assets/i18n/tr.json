@@ -1056,7 +1056,9 @@
         "LINK_LABEL": "Arşivlenmiş projeler",
         "SEARCH": "Arşivlenmiş projeleri ara",
         "UNARCHIVE": "Projeyi geri yükle"
-      }
+      },
+      "VIEW_LIST": "Liste görünümüne geç",
+      "VIEW_KANBAN": "Kanban görünümüne geç"
     },
     "PROJECT_FOLDER": {
       "CONFIRM_DELETE": "\"{{title}}\" adlı klasörü silmek istediğinizden emin misiniz? Bu klasördeki tüm projeler kök düzeye taşınacaktır.",

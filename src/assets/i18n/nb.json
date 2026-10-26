@@ -1036,7 +1036,9 @@
       "D_CONFIRM_ARCHIVE": {
         "MSG": "Vil du arkivere prosjektet «{{title}}»? Oppgaver, gjentakelsesinnstillinger og påminnelser settes på pause til du gjenoppretter det.",
         "OK": "Arkiver"
-      }
+      },
+      "VIEW_LIST": "Bytt til listevisning",
+      "VIEW_KANBAN": "Bytt til Kanban-visning"
     },
     "PROJECT_FOLDER": {
       "CONFIRM_DELETE": "Er du sikker på at du vil slette mappen \"{{title}}\"? Alle prosjekter i denne mappen vil bli flyttet til rotnivå.",

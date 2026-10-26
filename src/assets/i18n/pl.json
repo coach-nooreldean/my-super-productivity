@@ -1065,7 +1065,9 @@
         "LINK_LABEL": "Zarchiwizowane projekty",
         "SEARCH": "Szukaj zarchiwizowanych projektów",
         "UNARCHIVE": "Przywróć projekt"
-      }
+      },
+      "VIEW_LIST": "Przełącz na widok listy",
+      "VIEW_KANBAN": "Przełącz na widok Kanban"
     },
     "PROJECT_FOLDER": {
       "CONFIRM_DELETE": "Czy na pewno chcesz usunąć folder \"{{title}}\"? Wszystkie projekty w tym folderze zostaną przeniesione na poziom główny.",

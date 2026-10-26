@@ -1054,7 +1054,9 @@
         "LINK_LABEL": "Dự án đã lưu trữ",
         "SEARCH": "Tìm dự án đã lưu trữ",
         "UNARCHIVE": "Khôi phục dự án"
-      }
+      },
+      "VIEW_LIST": "Chuyển sang chế độ xem danh sách",
+      "VIEW_KANBAN": "Chuyển sang chế độ xem Kanban"
     },
     "PROJECT_FOLDER": {
       "CONFIRM_DELETE": "Bạn có chắc muốn xóa thư mục \"{{title}}\"? Các dự án sẽ được chuyển lên gốc.",

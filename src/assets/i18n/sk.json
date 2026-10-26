@@ -1036,7 +1036,9 @@
         "LINK_LABEL": "Archivované projekty",
         "SEARCH": "Hľadať v archivovaných projektoch",
         "UNARCHIVE": "Obnoviť projekt"
-      }
+      },
+      "VIEW_LIST": "Prepnúť na zobrazenie zoznamu",
+      "VIEW_KANBAN": "Prepnúť na zobrazenie Kanban"
     },
     "PROJECT_FOLDER": {
       "CONFIRM_DELETE": "Ste si istí, že chcete zmazať priečinok \"{{title}}\"? Všetky projekty v tomto priečinku budú presunuté na koreňovú úroveň.",

@@ -1036,7 +1036,9 @@
         "LINK_LABEL": "Proyek yang diarsipkan",
         "SEARCH": "Cari proyek yang diarsipkan",
         "UNARCHIVE": "Pulihkan proyek"
-      }
+      },
+      "VIEW_LIST": "Beralih ke tampilan daftar",
+      "VIEW_KANBAN": "Beralih ke tampilan Kanban"
     },
     "PROJECT_FOLDER": {
       "CONFIRM_DELETE": "Apakah Anda yakin ingin menghapus folder \"{{title}}\"? Semua proyek dalam folder ini akan dipindahkan ke tingkat root.",

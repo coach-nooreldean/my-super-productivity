@@ -1059,7 +1059,9 @@
         "LINK_LABEL": "Projetos arquivados",
         "SEARCH": "Pesquisar projetos arquivados",
         "UNARCHIVE": "Restaurar projeto"
-      }
+      },
+      "VIEW_LIST": "Alternar para visualização de lista",
+      "VIEW_KANBAN": "Alternar para visualização Kanban"
     },
     "PROJECT_FOLDER": {
       "CONFIRM_DELETE": "Tem certeza de que deseja excluir a pasta \"{{title}}\"? Todos os projetos nesta pasta serão movidos para o nível raiz.",
