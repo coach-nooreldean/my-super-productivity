@@ -95,6 +95,7 @@ import { IssueSyncStateService } from '../../issue/two-way-sync/issue-sync-state
     '[attr.data-task-selectable]': 'focusable() ? "true" : null',
     '[attr.tabindex]': 'focusable() ? "0" : null',
     '[class.isDone]': 'task().isDone',
+    '[class.isSubTask]': '!!task().parentId',
     '[class.isDragReady]': 'isDragReady()',
     '[class.isCurrent]': 'isCurrent()',
     '[class.isMultiSelected]': 'isMultiSelected()',

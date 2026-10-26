@@ -21,6 +21,13 @@
 
     .title {
       text-decoration: line-through;
+      font-weight: var(--font-weight-regular);
+    }
+  }
+
+  &.isSubTask {
+    .title {
+      font-weight: var(--font-weight-regular);
     }
   }
 
@@ -114,6 +121,7 @@ task-priority-indicator {
 
 .title {
   font-size: var(--planner-font-size);
+  font-weight: var(--font-weight-bold);
   padding-left: var(--s-half);
   padding-right: var(--s-half);
   // to have room for the coloured edit border

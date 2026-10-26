@@ -63,7 +63,7 @@ progress-bar {
 }
 
 .task-title.task-title {
-  font-weight: bold;
+  font-weight: var(--font-weight-bold);
   transform-origin: top center;
   padding: var(--s);
   margin: 0;
@@ -90,6 +90,11 @@ progress-bar {
     display: block;
     opacity: 0.4;
   }
+}
+
+:host.isDone .task-title.task-title,
+:host.isSubTask .task-title.task-title {
+  font-weight: var(--font-weight-regular);
 }
 
 .created,

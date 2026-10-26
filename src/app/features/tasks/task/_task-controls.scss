@@ -81,7 +81,12 @@
   // The title is the one thing on the row that should read first; project,
   // tags and estimate are muted secondary text (see .parent-title, .time).
   .task-title {
-    font-weight: var(--font-weight-medium);
+    font-weight: var(--font-weight-bold);
+  }
+
+  :host.isSubTask & .task-title,
+  :host.isDone & .task-title {
+    font-weight: var(--font-weight-regular);
   }
 
   // note: we use .tags-container, since we don't want margins for an empty list

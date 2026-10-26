@@ -154,6 +154,7 @@ const isInteractiveTarget = (target: EventTarget | null): boolean =>
     '[class.isMultiSelected]': 'isMultiSelected()',
     '[class.isTouchSelectionMode]': 'isTouchSelectionMode()',
     '[class.hasNoSubTasks]': 'task().subTaskIds.length === 0',
+    '[class.isSubTask]': 'isSubTask()',
     '[class.isDragReady]': 'isDragReady()',
     '[class.isOverdue]': 'isOverdue()',
     '(contextmenu)': 'onHostContextMenu($event)',
@@ -224,6 +225,7 @@ export class TaskComponent implements OnDestroy, AfterViewInit {
 
   // Use shared signals from services to avoid creating 600+ subscriptions on initial render
   isCurrent = computed(() => this._taskService.currentTaskId() === this.task().id);
+  isSubTask = computed(() => !!this.task().parentId || this.isInSubTaskList());
   isWontDo = computed(() => isWontDoTask(this.task()));
   isSelected = computed(() => this._taskService.selectedTaskId() === this.task().id);
   // Part of the transient multi-selection (modifier click, Shift+Arrow, X,

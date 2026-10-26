@@ -26,6 +26,7 @@
 // body-level value would lose to it — it has to be set on the same element.
 body .mat-mdc-tab-header {
   --mat-tab-label-text-tracking: var(--letter-spacing-normal);
+  --mat-tab-label-text-weight: var(--font-weight-medium);
 }
 
 body.isDarkTheme {
@@ -35,6 +36,10 @@ body.isDarkTheme {
 // Apply tab colors explicitly to tab components
 .mat-mdc-tab-group,
 .mat-mdc-tab-nav-bar {
+  .mdc-tab__text-label {
+    font-weight: var(--font-weight-medium);
+  }
+
   // Active tab label color
   .mdc-tab--active .mdc-tab__text-label {
     color: var(--mat-tab-header-active-label-text-color);
@@ -57,6 +62,15 @@ body.isDarkTheme {
   //--mat-chip-outline-color: var(--mat-chip-outline-color, var(--mat-sys-outline)) !important;
   --mat-chip-outline-color: var(--chip-outline-color) !important;
   --mat-chip-outline-width: 1px !important;
+  --mat-chip-label-text-weight: var(--font-weight-medium) !important;
+}
+
+.mat-mdc-chip {
+  --mat-chip-label-text-weight: var(--font-weight-medium);
+
+  .mdc-evolution-chip__text-label {
+    font-weight: var(--font-weight-medium);
+  }
 }
 
 // The chip remove icon is the whole tap target and only 18px tall. On touch,
@@ -298,6 +312,16 @@ mat-option.isDone {
   --mat-button-protected-label-text-tracking: var(--letter-spacing-normal);
   --mat-button-outlined-label-text-tracking: var(--letter-spacing-normal);
   --mat-button-tonal-label-text-tracking: var(--letter-spacing-normal);
+  --mat-button-text-label-text-weight: var(--font-weight-medium);
+  --mat-button-filled-label-text-weight: var(--font-weight-medium);
+  --mat-button-protected-label-text-weight: var(--font-weight-medium);
+  --mat-button-outlined-label-text-weight: var(--font-weight-medium);
+  --mat-button-tonal-label-text-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-medium);
+
+  .mdc-button__label {
+    font-weight: var(--font-weight-medium);
+  }
 }
 
 // Ensure proper contrast for text and stroked buttons on standard backgrounds

@@ -99,14 +99,20 @@
   display: flex;
   text-align: start;
   align-items: center;
+  font-weight: var(--font-weight-bold);
   // prevent overflow for looooong words
   overflow-wrap: anywhere;
 
-  &.isDone ::ng-deep .value-wrapper {
-    text-decoration: line-through;
+  &.isDone {
+    font-weight: var(--font-weight-regular);
+
+    ::ng-deep .value-wrapper {
+      text-decoration: line-through;
+    }
   }
 
   &.isSubTask {
+    font-weight: var(--font-weight-regular);
     font-style: italic;
   }
 
