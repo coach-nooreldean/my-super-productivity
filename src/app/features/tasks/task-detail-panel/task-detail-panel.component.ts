@@ -132,6 +132,12 @@ import { isWontDoTask } from '../util/is-wont-do-task';
     AddSubtaskInputComponent,
     TaskContextMenuComponent,
   ],
+  /* eslint-disable @typescript-eslint/naming-convention */
+  host: {
+    '[class.isDone]': 'task().isDone',
+    '[class.isSubTask]': '!!task().parentId',
+  },
+  /* eslint-enable @typescript-eslint/naming-convention */
 })
 export class TaskDetailPanelComponent implements OnInit, AfterViewInit, OnDestroy {
   private readonly _elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
