@@ -2900,7 +2900,8 @@
       "IS_MARKDOWN_FORMATTING_IN_NOTES_ENABLED": "Aktiver Markdown-formatering i oppgavenotater",
       "IS_TRAY_SHOW_CURRENT": "Vis gjeldende oppgave i skuffen / statusmenyen (kun desktop mac/windows)",
       "NOTES_TEMPLATE": "Mal for oppgavebeskrivelse",
-      "TITLE": "Oppgaver"
+      "TITLE": "Oppgaver",
+      "IS_COMPACT_SUB_TASKS_VIEW": "Kompakt visning av deloppgaver (reduser visuelt rot i oppgavekort)"
     },
     "TIME_TRACKING": {
       "HELP": "Påminnelsen om tidsregistrering er et banner som vises i tilfelle du har glemt å starte tidsregistreringen.",

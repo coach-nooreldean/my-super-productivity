@@ -2830,7 +2830,8 @@
       "IS_MARKDOWN_FORMATTING_IN_NOTES_ENABLED": "Povolit Markdown formátování v poznámkách k úkolům",
       "IS_TRAY_SHOW_CURRENT": "Zobrazit aktuální úkol v oznamovací oblasti / menu stavu (pouze pro desktop Mac/Windows)",
       "NOTES_TEMPLATE": "Šablona popisu úkolu",
-      "TITLE": "Úkoly"
+      "TITLE": "Úkoly",
+      "IS_COMPACT_SUB_TASKS_VIEW": "Kompaktní zobrazení dílčích úkolů (omezení vizuálního nepořádku v kartách úkolů)"
     },
     "POMODORO": {
       "BREAK_DURATION": "Délka krátkých přestávek",

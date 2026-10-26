@@ -2900,7 +2900,8 @@
       "IS_MARKDOWN_FORMATTING_IN_NOTES_ENABLED": "Aktifkan format Markdown di catatan tugas",
       "IS_TRAY_SHOW_CURRENT": "Tampilkan tugas saat ini di baki / menu status (khusus desktop mac/windows)",
       "NOTES_TEMPLATE": "Templat deskripsi tugas",
-      "TITLE": "Tugas"
+      "TITLE": "Tugas",
+      "IS_COMPACT_SUB_TASKS_VIEW": "Tampilan subtugas ringkas (mengurangi kekacauan visual di dalam kartu tugas)"
     },
     "TIME_TRACKING": {
       "HELP": "Pengingat pelacakan waktu adalah spanduk yang akan muncul jika Anda lupa memulai pelacakan waktu.",

@@ -2894,7 +2894,8 @@
       "IS_MARKDOWN_FORMATTING_IN_NOTES_ENABLED": "Bật định dạng Markdown trong ghi chú công việc",
       "IS_TRAY_SHOW_CURRENT": "Hiển thị công việc hiện tại trong khay / menu trạng thái (chỉ macOS/Windows)",
       "NOTES_TEMPLATE": "Mẫu mô tả công việc",
-      "TITLE": "Công việc"
+      "TITLE": "Công việc",
+      "IS_COMPACT_SUB_TASKS_VIEW": "Chế độ xem công việc phụ thu gọn (giảm sự lộn xộn trực quan trong thẻ công việc)"
     },
     "TIME_TRACKING": {
       "HELP": "Nhắc nhở theo dõi thời gian là một biểu ngữ sẽ xuất hiện nếu bạn quên bắt đầu theo dõi thời gian.",

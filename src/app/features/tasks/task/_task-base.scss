@@ -171,6 +171,124 @@
   background: var(--sub-task-c-bg-done);
 }
 
+// Compact sub-tasks styling
+:host.isCompactSubTasksView {
+  .sub-tasks {
+    margin: 0 0 0 calc(var(--s3) + 2px);
+    padding: var(--s-quarter) 0 var(--s-quarter) 0;
+    border-top: 1px solid var(--extra-border-color);
+    position: relative;
+
+    @include mq(xs) {
+      margin: 0 0 0 var(--s3);
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: -12px;
+      top: 0;
+      bottom: var(--s-half);
+      width: 1px;
+      background: var(--extra-border-color);
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    ::ng-deep .box {
+      box-shadow: none !important;
+      border: none !important;
+      border-radius: var(--task-border-radius);
+      background: transparent !important;
+      top: 0;
+      bottom: 0;
+    }
+
+    ::ng-deep task {
+      border-top: none !important;
+      border-bottom: none !important;
+      margin-bottom: 1px !important;
+
+      &:hover > swipe-block ::ng-deep > .inner-wrapper > .inner-wrapper > .box {
+        background: color-mix(in srgb, var(--c-accent) 6%, transparent) !important;
+      }
+
+      &.isSelected > swipe-block ::ng-deep > .inner-wrapper > .inner-wrapper > .box {
+        background: var(--task-c-selected-bg) !important;
+      }
+    }
+  }
+}
+
+:host.isSubTask.isCompactSubTasksView {
+  --task-first-line-min-height: 32px;
+
+  .inner-wrapper {
+    padding: 2px 0;
+  }
+
+  .first-line {
+    min-height: 32px;
+    align-items: center;
+  }
+
+  .title-and-left-btns-wrapper {
+    min-height: 28px;
+
+    done-toggle {
+      --done-toggle-size: 28px;
+      margin-left: var(--s-half);
+    }
+  }
+
+  .title-and-tags-wrapper {
+    .task-title {
+      font-size: var(--font-size-sm, 13px);
+      line-height: 22px;
+    }
+  }
+
+  .all-controls-wrapper {
+    align-items: center;
+
+    .time-wrapper {
+      min-height: 24px;
+      .time {
+        font-size: 11px;
+      }
+    }
+
+    .controls {
+      opacity: 0;
+      transition: opacity var(--transition-fast) ease-in-out;
+      pointer-events: none;
+
+      button {
+        min-height: 26px;
+        height: 26px !important;
+        width: 26px !important;
+        padding: 0;
+        line-height: 26px;
+
+        mat-icon {
+          font-size: 16px;
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+  }
+
+  &:hover,
+  &:focus-within,
+  &.isSelected {
+    .all-controls-wrapper .controls {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+}
+
 .first-line {
   position: relative;
   display: flex;

@@ -41,6 +41,14 @@ export const TASKS_SETTINGS_FORM_CFG: ConfigFormSection<TasksConfig> = {
       },
     },
     {
+      key: 'isCompactSubTasksView',
+      type: 'checkbox',
+      defaultValue: true,
+      templateOptions: {
+        label: T.GCF.TASKS.IS_COMPACT_SUB_TASKS_VIEW,
+      },
+    },
+    {
       key: 'defaultProjectId',
       type: 'project-select',
       templateOptions: {

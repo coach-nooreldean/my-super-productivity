@@ -2840,7 +2840,8 @@
       "PRIORITY_ICON_PRESET": "Ikony priorytetu",
       "PRIORITY_ICON_PRESET_CHEVRONS": "Strzałki",
       "PRIORITY_ICON_PRESET_NUMBERS": "Liczby",
-      "TITLE": "Zadania"
+      "TITLE": "Zadania",
+      "IS_COMPACT_SUB_TASKS_VIEW": "Kompaktowy widok podzadań (zmniejsza bałagan wizualny wewnątrz kart zadań)"
     },
     "TIME_TRACKING": {
       "HELP": "Przypomnienie o śledzeniu czasu to baner wyświetlany na wypadek, gdybyś zapomniał rozpocząć śledzenie czasu.",

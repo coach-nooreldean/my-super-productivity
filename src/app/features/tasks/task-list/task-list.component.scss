@@ -34,6 +34,10 @@
 
 .task-list-inner[data-list-id='SUB'] {
   padding: var(--s) 0;
+
+  :host-context(.isCompactSubTasksView) & {
+    padding: 2px 0;
+  }
 }
 
 .done-task-box {

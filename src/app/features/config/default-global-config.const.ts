@@ -49,6 +49,7 @@ export const DEFAULT_GLOBAL_CONFIG: GlobalConfigState = {
     isMarkdownFormattingInNotesEnabled: true,
     notesTemplate: defaultTaskNotesTemplate,
     priorityIconPreset: 'chevrons',
+    isCompactSubTasksView: true,
   },
   misc: {
     isConfirmBeforeExit: false,

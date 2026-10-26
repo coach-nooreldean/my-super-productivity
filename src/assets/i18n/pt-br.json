@@ -2935,7 +2935,8 @@
       "PRIORITY_ICON_PRESET": "Ícones de prioridade",
       "PRIORITY_ICON_PRESET_CHEVRONS": "Setas",
       "PRIORITY_ICON_PRESET_NUMBERS": "Números",
-      "TITLE": "Tarefas"
+      "TITLE": "Tarefas",
+      "IS_COMPACT_SUB_TASKS_VIEW": "Visualização compacta de subtarefas (reduz a desordem visual nos cartões de tarefas)"
     },
     "TIME_TRACKING": {
       "HELP": "O lembrete de registro de trabalho é um banner que aparece caso você esqueça de iniciar o cronômetro.",

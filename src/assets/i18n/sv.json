@@ -2858,7 +2858,8 @@
       "IS_MARKDOWN_FORMATTING_IN_NOTES_ENABLED": "Aktivera Markdown-formatering i uppgiftsanteckningar",
       "IS_TRAY_SHOW_CURRENT": "Visa aktuell uppgift i systemfältet / statusmenyn (endast skrivbord Mac/Windows)",
       "NOTES_TEMPLATE": "Mall för uppgiftsanteckningar",
-      "TITLE": "Uppgifter"
+      "TITLE": "Uppgifter",
+      "IS_COMPACT_SUB_TASKS_VIEW": "Kompakt vy för deluppgifter (minska visuell rörighet i uppgiftskorten)"
     },
     "TIME_TRACKING": {
       "HELP": "Påminnelsen om tidrapportering är en banner som visas om du har glömt att starta tidrapporteringen.",

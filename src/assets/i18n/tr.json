@@ -2845,7 +2845,8 @@
       "PRIORITY_ICON_PRESET": "Öncelik simgeleri",
       "PRIORITY_ICON_PRESET_CHEVRONS": "Şevronlar",
       "PRIORITY_ICON_PRESET_NUMBERS": "Sayılar",
-      "TITLE": "Görevler"
+      "TITLE": "Görevler",
+      "IS_COMPACT_SUB_TASKS_VIEW": "Kompakt alt görev görünümü (görev kartlarındaki görsel dağınıklığı azaltın)"
     },
     "TIME_TRACKING": {
       "HELP": "Zaman izlemeyi başlatmayı unutmanız Durumunda görünecek bir başlık yapılandırın.",

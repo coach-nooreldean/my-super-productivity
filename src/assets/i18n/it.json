@@ -2900,7 +2900,8 @@
       "IS_MARKDOWN_FORMATTING_IN_NOTES_ENABLED": "Abilita la formattazione Markdown nelle note delle attività",
       "IS_TRAY_SHOW_CURRENT": "Mostra l'attività corrente nel menu a discesa / menu di stato (solo desktop mac/windows)",
       "NOTES_TEMPLATE": "Modello di descrizione dell'attività",
-      "TITLE": "Attività"
+      "TITLE": "Attività",
+      "IS_COMPACT_SUB_TASKS_VIEW": "Vista compatta delle sottoattività (riduce il disordine visivo nelle schede delle attività)"
     },
     "TIME_TRACKING": {
       "HELP": "Il promemoria per il monitoraggio del tempo è un banner da visualizzare nel caso in cui si sia dimenticati di avviare il monitoraggio del tempo.",

@@ -2901,7 +2901,8 @@
       "IS_MARKDOWN_FORMATTING_IN_NOTES_ENABLED": "Povoliť formátovanie Markdown v poznámkach k úlohám",
       "IS_TRAY_SHOW_CURRENT": "Zobraziť aktuálnu úlohu v systémovej lište / stavovom menu (iba desktop Mac/Windows)",
       "NOTES_TEMPLATE": "Šablóna poznámok k úlohe",
-      "TITLE": "Úlohy"
+      "TITLE": "Úlohy",
+      "IS_COMPACT_SUB_TASKS_VIEW": "Kompaktné zobrazenie podúloh (zníženie vizuálneho neporiadku v kartách úloh)"
     },
     "TIME_TRACKING": {
       "HELP": "Pripomienka sledovania času je banner, ktorý sa zobrazí v prípade, že ste zabudli spustiť sledovanie času.",
