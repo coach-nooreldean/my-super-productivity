@@ -2885,7 +2885,8 @@
       "IS_MARKDOWN_FORMATTING_IN_NOTES_ENABLED": "Markdown-Formatierung in Aufgabenbeschreibungen aktivieren",
       "IS_TRAY_SHOW_CURRENT": "Aktuelle Aufgabe im Tray / Statusmenü anzeigen (nur Desktop Mac/Windows)",
       "NOTES_TEMPLATE": "Aufgabenbeschreibungsvorlage",
-      "TITLE": "Aufgaben"
+      "TITLE": "Aufgaben",
+      "IS_COMPACT_SUB_TASKS_VIEW": "Kompakte Unteraufgaben-Ansicht (visuelle Unordnung in Aufgabenkarten reduzieren)"
     },
     "TIME_TRACKING": {
       "HELP": "Die Zeiterfassungserinnerung ist ein Banner, das angezeigt wird, falls du vergessen hast, die Zeiterfassung zu starten.",

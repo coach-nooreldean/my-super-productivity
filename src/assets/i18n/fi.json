@@ -2900,7 +2900,8 @@
       "IS_MARKDOWN_FORMATTING_IN_NOTES_ENABLED": "Ota käyttöön Markdown-muotoilu tehtävämuistiinpanoissa",
       "IS_TRAY_SHOW_CURRENT": "Näytä nykyinen tehtävä tehtäväpalkissa / tilavalikossa (vain työpöytä mac/windows)",
       "NOTES_TEMPLATE": "Tehtävän kuvauksen mallipohja",
-      "TITLE": "Tehtävät"
+      "TITLE": "Tehtävät",
+      "IS_COMPACT_SUB_TASKS_VIEW": "Kompakti alitehtävien näkymä (vähennä visuaalista sotkua tehtäväkorteissa)"
     },
     "TIME_TRACKING": {
       "HELP": "Ajanseurannan muistutus on banneri, joka näkyy, jos unohdit aloittaa ajan seurannan.",

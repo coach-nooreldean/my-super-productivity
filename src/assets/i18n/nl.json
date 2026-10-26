@@ -2900,7 +2900,8 @@
       "IS_MARKDOWN_FORMATTING_IN_NOTES_ENABLED": "Markdown-opmaak inschakelen in taaknotities",
       "IS_TRAY_SHOW_CURRENT": "Toon huidige taak in het systeemvak / statusmenu (alleen desktop mac/windows)",
       "NOTES_TEMPLATE": "Sjabloon voor taaknotities bij het maken van nieuwe taken",
-      "TITLE": "Taken"
+      "TITLE": "Taken",
+      "IS_COMPACT_SUB_TASKS_VIEW": "Compacte weergave van sub-taken (verminder visuele rommel in taakkaarten)"
     },
     "TIME_TRACKING": {
       "HELP": "De herinnering voor tijdregistratie is een banner die wordt weergegeven als je bent vergeten om tijdregistratie te starten.",

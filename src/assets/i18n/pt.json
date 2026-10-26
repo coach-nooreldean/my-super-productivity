@@ -2900,7 +2900,8 @@
       "IS_MARKDOWN_FORMATTING_IN_NOTES_ENABLED": "Ativar formatação Markdown nas notas das tarefas",
       "IS_TRAY_SHOW_CURRENT": "Mostrar tarefa atual na bandeja / menu de status (somente desktop Mac/Windows)",
       "NOTES_TEMPLATE": "Modelo de descrição de tarefa",
-      "TITLE": "Tarefas"
+      "TITLE": "Tarefas",
+      "IS_COMPACT_SUB_TASKS_VIEW": "Visualização compacta de subtarefas (reduz a desordem visual nos cartões de tarefas)"
     },
     "TIME_TRACKING": {
       "HELP": "O lembrete de controlo de tempo é uma faixa que aparece no caso de se ter esquecido de iniciar o controlo de tempo.",

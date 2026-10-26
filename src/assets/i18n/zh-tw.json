@@ -2900,7 +2900,8 @@
       "IS_MARKDOWN_FORMATTING_IN_NOTES_ENABLED": "在工作筆記中啟用 Markdown 格式",
       "IS_TRAY_SHOW_CURRENT": "在系統匣/狀態選單中顯示當前工作（僅限 macOS/Windows）",
       "NOTES_TEMPLATE": "工作描述範本",
-      "TITLE": "工作"
+      "TITLE": "工作",
+      "IS_COMPACT_SUB_TASKS_VIEW": "子任務緊湊檢視（減少任務卡片內的視覺雜亂）"
     },
     "TIME_TRACKING": {
       "HELP": "時間追蹤提醒是一個橫幅，當您忘記開始時間追蹤時會顯示。",

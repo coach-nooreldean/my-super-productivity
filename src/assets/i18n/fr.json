@@ -2906,7 +2906,8 @@
       "IS_MARKDOWN_FORMATTING_IN_NOTES_ENABLED": "Activer le formatage Markdown dans les notes de tâche",
       "IS_TRAY_SHOW_CURRENT": "Afficher la tâche en cours dans la barre d'état / menu d'état (bureau uniquement)",
       "NOTES_TEMPLATE": "Modèle de description de tâche",
-      "TITLE": "Tâches"
+      "TITLE": "Tâches",
+      "IS_COMPACT_SUB_TASKS_VIEW": "Vue compacte des sous-tâches (réduire l'encombrement visuel dans les cartes de tâches)"
     },
     "TIME_TRACKING": {
       "HELP": "Le rappel de suivi du temps est une bannière qui s'affiche si vous oubliez de démarrer le suivi du temps.",

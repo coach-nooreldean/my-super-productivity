@@ -2901,7 +2901,8 @@
       "IS_MARKDOWN_FORMATTING_IN_NOTES_ENABLED": "Habilitar formato Markdown en notas de tareas",
       "IS_TRAY_SHOW_CURRENT": "Mostrar tarea actual en la bandeja / menú de estado (solo escritorio mac/windows)",
       "NOTES_TEMPLATE": "Plantilla de descripción de tarea",
-      "TITLE": "Tareas"
+      "TITLE": "Tareas",
+      "IS_COMPACT_SUB_TASKS_VIEW": "Vista compacta de subtareas (reducir el desorden visual dentro de las tarjetas de tareas)"
     },
     "TIME_TRACKING": {
       "HELP": "El recordatorio de seguimiento de tiempo es un banner que aparece en caso de que olvides iniciar el seguimiento de tiempo.",

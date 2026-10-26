@@ -2859,7 +2859,8 @@
       "PRIORITY_ICON_PRESET": "Pictogramă prioritate",
       "PRIORITY_ICON_PRESET_CHEVRONS": "Chevron",
       "PRIORITY_ICON_PRESET_NUMBERS": "Numere",
-      "TITLE": "Sarcini"
+      "TITLE": "Sarcini",
+      "IS_COMPACT_SUB_TASKS_VIEW": "Vizualizare compactă a subsarcinilor (reduce aglomerația vizuală în cardurile de sarcini)"
     },
     "TIME_TRACKING": {
       "HELP": "Memento-ul de urmărire a timpului este un banner care va apărea dacă ai uitat să începi urmărirea timpului.",

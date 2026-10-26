@@ -2843,7 +2843,8 @@
       "IS_MARKDOWN_FORMATTING_IN_NOTES_ENABLED": "タスクノートでMarkdown形式を有効にする",
       "IS_TRAY_SHOW_CURRENT": "トレイ/ステータスメニューに現在のタスクを表示する（デスクトップのみ）",
       "NOTES_TEMPLATE": "タスクノートテンプレート",
-      "TITLE": "タスク"
+      "TITLE": "タスク",
+      "IS_COMPACT_SUB_TASKS_VIEW": "サブタスクのコンパクト表示（タスクカード内の視覚的煩雑さを軽減）"
     },
     "TIME_TRACKING": {
       "HELP": "タイムトラッキングリマインダーは、タイムトラッキングの開始を忘れた場合に表示されるバナーです。",

@@ -2888,7 +2888,8 @@
       "IS_MARKDOWN_FORMATTING_IN_NOTES_ENABLED": "Aktiviraj Markdown formatiranje u bilješkama zadataka",
       "IS_TRAY_SHOW_CURRENT": "Prikaži trenutni zadatak u tray / statusnom izborniku (macOS/Windows samo)",
       "NOTES_TEMPLATE": "Predložak opisa zadatka",
-      "TITLE": "Zadaci"
+      "TITLE": "Zadaci",
+      "IS_COMPACT_SUB_TASKS_VIEW": "Kompaktan prikaz podzadataka (smanjuje vizualni nered unutar kartica zadataka)"
     },
     "TIME_TRACKING": {
       "HELP": "Podsjetnik za praćenje vremena je traka koja se pojavljuje ako ste zaboravili pokrenuti praćenje vremena.",
