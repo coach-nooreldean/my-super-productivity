@@ -1,29 +1,4 @@
 {
-  "ar.json": {
-    "F.REMINDER.COUNTDOWN_BANNER.TXT_MULTIPLE.ONE": ["start"],
-    "F.SCHEDULE.PLAN_END_DAY": ["date"],
-    "F.SCHEDULE.PLAN_START_DAY": ["date"],
-    "F.SYNC.D_DATA_REPAIRED.MSG": ["count"],
-    "F.SYNC.D_DATA_REPAIRED.UNKNOWN_ERROR": ["err"],
-    "F.SYNC.D_RESTORE.CONFIRM_MSG": ["timestamp"],
-    "F.SYNC.FORM.WEB_DAV.S_TEST_FAIL": ["error", "url"],
-    "F.SYNC.FORM.WEB_DAV.S_TEST_SUCCESS": ["url"],
-    "F.SYNC.S.AUTH_TOKEN_REJECTED": ["reason"],
-    "F.SYNC.S.DATA_REPAIRED": ["count"],
-    "F.SYNC.S.INCOMPLETE_OP_SYNC": ["count"],
-    "F.SYNC.S.LOCAL_CHANGES_DISCARDED_SNAPSHOT": ["count"],
-    "F.SYNC.S.TIMEOUT_ERROR": ["suggestion"],
-    "F.SYNC.S.UNKNOWN_ERROR": ["err"],
-    "F.SYNC.S.UPLOAD_OPS_REJECTED": ["count"],
-    "F.SYNC.S.VECTOR_CLOCK_LIMIT_REACHED": ["maxSize", "originalSize"],
-    "F.TASK.B.DEADLINES_TODAY": ["count"],
-    "F.TASK.D_CONFIRM_DELETE.MSG": ["title"],
-    "F.TASK.S.DEADLINE_SET": ["date"],
-    "F.TASK.S.REMINDER_ADDED": ["date"],
-    "F.TASK.S.TASK_ALREADY_EXISTS": ["title"],
-    "MH.FEATURE_DISABLED_SNACK": ["featureName"],
-    "PLUGINS.CONFIRM_DISABLE_WITH_ISSUE_PROVIDERS": ["count", "name"]
-  },
   "cs.json": {
     "F.TASK.S.REMINDER_ADDED": ["date"]
   },

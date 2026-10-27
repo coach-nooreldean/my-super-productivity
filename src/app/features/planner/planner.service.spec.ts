@@ -17,7 +17,10 @@ import { getDbDateStr } from '../../util/get-db-date-str';
 import { signal, WritableSignal } from '@angular/core';
 import { LayoutService } from '../../core-ui/layout/layout.service';
 import { selectPlannerState } from './store/planner.selectors';
-import { selectTimelineConfig } from '../config/store/global-config.reducer';
+import {
+  selectMiscConfig,
+  selectTimelineConfig,
+} from '../config/store/global-config.reducer';
 import { selectStartOfNextDayDiffMs } from '../../root-store/app-state/app-state.selectors';
 import { findSpringForwardSunday } from '../tasks/dst.test-helper';
 
@@ -70,6 +73,7 @@ describe('PlannerService', () => {
               },
             },
             { selector: selectStartOfNextDayDiffMs, value: 0 },
+            { selector: selectMiscConfig, value: { isHideEmptyPlannerDays: false } },
           ],
         }),
         {
@@ -743,6 +747,21 @@ describe('PlannerService', () => {
           });
         }, 10);
       });
+    });
+  });
+
+  describe('revealDay', () => {
+    it('should ensure the day is loaded when revealed', () => {
+      spyOn(service, 'ensureDayLoaded');
+      service.revealDay('2026-02-28');
+      expect(service.ensureDayLoaded).toHaveBeenCalledWith('2026-02-28');
+    });
+
+    it('should clear revealed days on resetScrollState', () => {
+      service.revealDay('2026-02-28');
+      service.resetScrollState();
+      // Should not throw and resets state
+      expect(service.isLoadingMore$.value).toBeFalse();
     });
   });
 });

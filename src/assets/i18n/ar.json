@@ -931,6 +931,7 @@
       }
     },
     "PLANNER": {
+      "ADD_DAY": "إضافة يوم",
       "D": {
         "ADD_PLANNED": {
           "RE_PLAN_ALL": "إعادة جدولة الكل"
@@ -938,6 +939,7 @@
       },
       "DAY_LOAD": "المخطط: {{planned}} / المتاح: {{available}}",
       "EDIT_REPEATED_TASK": "تعديل المهمة المتكررة '{{taskName}}'",
+      "HIDE_EMPTY_DAYS": "إخفاء الأيام الفارغة",
       "NO_TASKS": "تم تحميل الانتقالات. استخدم التحديدات أدناه لتعيينها",
       "PLANNED_LOAD": "المخطط: {{planned}}",
       "PLAN_VIEW": {
@@ -948,7 +950,8 @@
         "REMOVED_PLAN_DATE": "تمت إزالة تاريخ الخطة للمهمة '{{taskTitle}}'",
         "TASK_ALREADY_PLANNED": "المهمة مخططة بالفعل لـ {{date}}",
         "TASK_PLANNED_FOR": "المهمة المخطط لها لـ <strong>{{date}}</strong>{{extra}}"
-      }
+      },
+      "SHOW_ALL_DAYS": "عرض جميع الأيام"
     },
     "POMODORO": {
       "BREAK_IS_DONE": "يتم استراحة الخاص بك!"
@@ -2855,6 +2858,8 @@
       "IS_DARK_MODE": "وضع الظلام",
       "IS_DISABLE_ANIMATIONS": "تعطيل جميع الرسوم المتحركة",
       "IS_DISABLE_CELEBRATION": "تعطيل الاحتفال في ملخص اليوم",
+      "IS_HIDE_EMPTY_PLANNER_DAYS": "إخفاء الأيام الفارغة في المخطط",
+      "IS_HIDE_EMPTY_PLANNER_DAYS_HINT": "إخفاء الأيام التي لا تحتوي على أي مهام أو مواعيد نهائية أو مهام متكررة أو أحداث تقويم. يتم دائماً عرض اليوم الحالي.",
       "IS_LOCAL_REST_API_ENABLED": "تفعيل واجهة REST المحلية (سطح المكتب فقط)",
       "IS_LOCAL_REST_API_ENABLED_HINT": "يسمح للبرامج النصية المحلية بالتحكم في التطبيق قيد التشغيل عبر http://127.0.0.1:3876. سيتمكن أي تطبيق يعمل على هذا الكمبيوتر من قراءة مهامك وتعديلها.",
       "LOCAL_REST_API_TOKEN": "رمز الوصول",

@@ -931,6 +931,7 @@
       }
     },
     "PLANNER": {
+      "ADD_DAY": "Add day",
       "D": {
         "ADD_PLANNED": {
           "RE_PLAN_ALL": "Reschedule all"
@@ -938,6 +939,7 @@
       },
       "DAY_LOAD": "Planned: {{planned}} / Available: {{available}}",
       "EDIT_REPEATED_TASK": "Edit recurring task \"{{taskName}}\"",
+      "HIDE_EMPTY_DAYS": "Hide empty days",
       "NO_TASKS": "No tasks",
       "PLANNED_LOAD": "Planned: {{planned}}",
       "PLAN_VIEW": {
@@ -948,7 +950,8 @@
         "REMOVED_PLAN_DATE": "Removed plan date for task \"{{taskTitle}}\"",
         "TASK_ALREADY_PLANNED": "Task is already planned for {{date}}",
         "TASK_PLANNED_FOR": "Task planned for <strong>{{date}}</strong>{{extra}}"
-      }
+      },
+      "SHOW_ALL_DAYS": "Show all days"
     },
     "POMODORO": {
       "BREAK_IS_DONE": "Break is over!"
@@ -2855,6 +2858,8 @@
       "IS_DARK_MODE": "Dark Mode",
       "IS_DISABLE_ANIMATIONS": "Disable all animations",
       "IS_DISABLE_CELEBRATION": "Disable celebration in daily summary",
+      "IS_HIDE_EMPTY_PLANNER_DAYS": "Hide empty days in Planner",
+      "IS_HIDE_EMPTY_PLANNER_DAYS_HINT": "Hides days without any tasks, deadlines, repeating tasks, or calendar events. Today is always shown.",
       "IS_LOCAL_REST_API_ENABLED": "Enable local REST API (desktop only)",
       "IS_LOCAL_REST_API_ENABLED_HINT": "Allows local scripts to control the running app via http://127.0.0.1:3876. Requests require the access token shown below; keep it private and regenerate it if it may have been exposed. Any application running as you on this computer can read the token and modify your tasks. This setting applies to this computer only and is not synced.",
       "LOCAL_REST_API_TOKEN": "Access Token",

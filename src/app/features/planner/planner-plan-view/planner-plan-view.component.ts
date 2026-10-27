@@ -82,7 +82,7 @@ export class PlannerPlanViewComponent {
     });
   }
 
-  scrollToDay(dayDate: string): void {
+  scrollToDay(dayDate: string, focusAdd = false): void {
     this._isScrollingToDay = true;
     this.visibleDayDate.set(dayDate);
 
@@ -91,16 +91,25 @@ export class PlannerPlanViewComponent {
       `[data-day="${CSS.escape(dayDate)}"]`,
     ) as HTMLElement | null;
     if (el) {
-      this._scrollToElement(host, el);
+      this._scrollToElement(host, el, focusAdd);
     } else {
       this._plannerService.ensureDayLoaded(dayDate);
-      this._pollForElement(dayDate);
+      this._plannerService.revealDay(dayDate);
+      this._pollForElement(dayDate, 0, focusAdd);
     }
   }
 
-  private _scrollToElement(host: HTMLElement, el: HTMLElement): void {
+  private _scrollToElement(host: HTMLElement, el: HTMLElement, focusAdd = false): void {
     host.scrollTo({ top: el.offsetTop - host.offsetTop, behavior: 'smooth' });
     this._waitForScrollEnd();
+    if (focusAdd) {
+      setTimeout(() => {
+        const addBtn = el.querySelector('[data-add-task-btn]') as HTMLElement | null;
+        if (addBtn) {
+          addBtn.click();
+        }
+      }, 150);
+    }
   }
 
   private _waitForScrollEnd(): void {
@@ -132,7 +141,7 @@ export class PlannerPlanViewComponent {
     this._pendingIntervals.push(poll);
   }
 
-  private _pollForElement(dayDate: string, attempt = 0): void {
+  private _pollForElement(dayDate: string, attempt = 0, focusAdd = false): void {
     if (attempt > 20) {
       this._isScrollingToDay = false;
       return;
@@ -143,9 +152,9 @@ export class PlannerPlanViewComponent {
         `[data-day="${CSS.escape(dayDate)}"]`,
       ) as HTMLElement | null;
       if (el) {
-        this._scrollToElement(host, el);
+        this._scrollToElement(host, el, focusAdd);
       } else {
-        this._pollForElement(dayDate, attempt + 1);
+        this._pollForElement(dayDate, attempt + 1, focusAdd);
       }
     }, 100);
     this._pendingTimers.push(timer);

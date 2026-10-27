@@ -1,12 +1,47 @@
+<div class="planner-toolbar">
+  <div class="planner-toolbar-actions">
+    <button
+      mat-stroked-button
+      type="button"
+      (click)="dayPicker.open()"
+      [matTooltip]="T.F.PLANNER.ADD_DAY | translate"
+    >
+      <mat-icon>add</mat-icon>
+      {{ T.F.PLANNER.ADD_DAY | translate }}
+    </button>
+    <input
+      #dayPickerInput
+      matInput
+      [matDatepicker]="dayPicker"
+      (dateChange)="onDayPicked($event.value)"
+      style="display: none"
+    />
+    <mat-datepicker #dayPicker></mat-datepicker>
+
+    <button
+      mat-icon-button
+      type="button"
+      (click)="toggleHideEmptyDays()"
+      [color]="isHideEmptyDays() ? 'primary' : undefined"
+      [matTooltip]="
+        (isHideEmptyDays() ? T.F.PLANNER.SHOW_ALL_DAYS : T.F.PLANNER.HIDE_EMPTY_DAYS)
+          | translate
+      "
+    >
+      <mat-icon>{{ isHideEmptyDays() ? 'visibility_off' : 'visibility' }}</mat-icon>
+    </button>
+  </div>
+</div>
+
 @if (layoutService.isXs()) {
   <planner-calendar-nav
-    [visibleDayDate]="planView.visibleDayDate()"
+    [visibleDayDate]="planView()?.visibleDayDate() ?? null"
     [daysWithTasks]="daysWithTasks()"
-    (dayTapped)="planView.scrollToDay($event)"
+    (dayTapped)="onCalendarDayTapped($event)"
   />
 }
 <planner-plan-view
-  #planView
+  #planViewRef
   cdkDropListGroup
   cdkScrollable
 />
