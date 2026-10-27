@@ -1,0 +1,189 @@
+<div class="page-wrapper">
+  <div class="filter-header">
+    <mat-form-field
+      appearance="outline"
+      class="search-field"
+    >
+      <mat-label>{{ T.F.COMPLETED_TASKS.SEARCH_PLACEHOLDER | translate }}</mat-label>
+      <input
+        matInput
+        [(ngModel)]="searchTerm"
+        [placeholder]="T.F.COMPLETED_TASKS.SEARCH_PLACEHOLDER | translate"
+      />
+      @if (searchTerm()) {
+        <button
+          mat-icon-button
+          matSuffix
+          [attr.aria-label]="T.G.CLEAR | translate"
+          (click)="searchTerm.set('')"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      }
+    </mat-form-field>
+
+    <div class="select-filters">
+      <mat-form-field
+        appearance="outline"
+        class="filter-select"
+      >
+        <mat-label>{{ T.MH.PROJECTS | translate }}</mat-label>
+        <mat-select [(ngModel)]="selectedProjectId">
+          <mat-option value="ALL">
+            {{ T.F.COMPLETED_TASKS.FILTER_ALL_PROJECTS | translate }}
+          </mat-option>
+          <mat-option [value]="'INBOX'">
+            <mat-icon class="option-icon">inbox</mat-icon>
+            {{ T.G.INBOX_PROJECT_TITLE | translate }}
+          </mat-option>
+          @for (project of projects(); track project.id) {
+            @if (project.id !== 'INBOX') {
+              <mat-option [value]="project.id">
+                <mat-icon
+                  class="option-icon"
+                  [style.color]="project.theme?.primary || null"
+                >
+                  {{ project.icon || DEFAULT_PROJECT_ICON }}
+                </mat-icon>
+                {{ project.title }}
+              </mat-option>
+            }
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field
+        appearance="outline"
+        class="filter-select"
+      >
+        <mat-label>{{ T.MH.SCHEDULE | translate }}</mat-label>
+        <mat-select [(ngModel)]="selectedDateRange">
+          <mat-option value="all">
+            {{ T.F.COMPLETED_TASKS.FILTER_DATE_ALL | translate }}
+          </mat-option>
+          <mat-option value="today">
+            {{ T.F.COMPLETED_TASKS.FILTER_DATE_TODAY | translate }}
+          </mat-option>
+          <mat-option value="yesterday">
+            {{ T.F.COMPLETED_TASKS.FILTER_DATE_YESTERDAY | translate }}
+          </mat-option>
+          <mat-option value="7days">
+            {{ T.F.COMPLETED_TASKS.FILTER_DATE_LAST_7_DAYS | translate }}
+          </mat-option>
+          <mat-option value="30days">
+            {{ T.F.COMPLETED_TASKS.FILTER_DATE_LAST_30_DAYS | translate }}
+          </mat-option>
+          <mat-option value="thisMonth">
+            {{ T.F.COMPLETED_TASKS.FILTER_DATE_THIS_MONTH | translate }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  @if (isLoading()) {
+    <div class="loading-wrapper">
+      <mat-progress-spinner
+        mode="indeterminate"
+        diameter="40"
+      ></mat-progress-spinner>
+    </div>
+  } @else {
+    <section class="component-wrapper">
+      @if (filteredItems().length === 0) {
+        <div class="empty-state">
+          <mat-icon class="empty-icon">task_alt</mat-icon>
+          <p>{{ T.F.COMPLETED_TASKS.NO_TASKS | translate }}</p>
+        </div>
+      } @else {
+        <div class="tasks-count-badge">
+          <span>{{ filteredItems().length }} {{ T.WW.DONE_TASKS | translate }}</span>
+        </div>
+
+        <ul
+          class="task-list"
+          [attr.aria-label]="T.MH.COMPLETED_TASKS | translate"
+        >
+          @for (item of filteredItems(); track item.task.id) {
+            <li class="task-row">
+              <div class="task-status-icon">
+                <mat-icon
+                  class="done-check-icon"
+                  aria-hidden="true"
+                  >check_circle</mat-icon
+                >
+              </div>
+
+              <div
+                class="task-content"
+                (click)="viewTaskDetails(item.task)"
+              >
+                <span class="task-title">{{ item.task.title }}</span>
+                <div class="task-meta">
+                  @if (item.projectTitle) {
+                    <span class="meta-pill project-pill">
+                      <mat-icon
+                        class="pill-icon"
+                        [style.color]="item.projectColor || null"
+                        aria-hidden="true"
+                      >
+                        {{ item.projectIcon }}
+                      </mat-icon>
+                      <span class="pill-text">{{ item.projectTitle }}</span>
+                    </span>
+                  }
+
+                  @if (item.completionTime) {
+                    <span class="meta-pill time-pill">
+                      <mat-icon
+                        class="pill-icon"
+                        aria-hidden="true"
+                        >schedule</mat-icon
+                      >
+                      <span class="pill-text"
+                        >{{ item.completionTime | date: 'mediumDate' }}
+                        {{ item.completionTime | date: 'shortTime' }}</span
+                      >
+                    </span>
+                  }
+
+                  @if (item.isArchived) {
+                    <span class="meta-pill archive-pill">
+                      <mat-icon
+                        class="pill-icon"
+                        aria-hidden="true"
+                        >archive</mat-icon
+                      >
+                      <span class="pill-text">{{
+                        T.F.COMPLETED_TASKS.ARCHIVED_BADGE | translate
+                      }}</span>
+                    </span>
+                  }
+                </div>
+              </div>
+
+              <div class="task-actions">
+                <button
+                  mat-icon-button
+                  [matTooltip]="T.F.COMPLETED_TASKS.RESTORE_TASK | translate"
+                  [attr.aria-label]="T.F.COMPLETED_TASKS.RESTORE_TASK | translate"
+                  (click)="uncompleteTask(item)"
+                >
+                  <mat-icon>undo</mat-icon>
+                </button>
+                <button
+                  mat-icon-button
+                  [matTooltip]="T.F.COMPLETED_TASKS.TASK_VIEW_DETAILS | translate"
+                  [attr.aria-label]="T.F.COMPLETED_TASKS.TASK_VIEW_DETAILS | translate"
+                  (click)="viewTaskDetails(item.task)"
+                >
+                  <mat-icon>visibility</mat-icon>
+                </button>
+              </div>
+            </li>
+          }
+        </ul>
+      }
+    </section>
+  }
+</div>

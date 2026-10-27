@@ -1,4 +1,5 @@
 export { ArchivedProjectsPageComponent } from '../pages/archived-projects-page/archived-projects-page.component';
+export { CompletedTasksPageComponent } from '../pages/completed-tasks-page/completed-tasks-page.component';
 export { ConfigPageComponent } from '../pages/config-page/config-page.component';
 export { SearchPageComponent } from '../pages/search-page/search-page.component';
 export { ScheduledListPageComponent } from '../pages/scheduled-list-page/scheduled-list-page.component';

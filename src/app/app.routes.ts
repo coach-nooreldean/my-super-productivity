@@ -117,6 +117,13 @@ export const APP_ROUTES: Routes = [
     canActivate: [DonatePageGuard, FeatureEnabledGuard, FocusOverlayOpenGuard],
   },
   {
+    path: 'completed-tasks',
+    loadComponent: () =>
+      import('./routes/pages.routes').then((m) => m.CompletedTasksPageComponent),
+    data: { page: 'completed-tasks' },
+    canActivate: [FocusOverlayOpenGuard],
+  },
+  {
     path: 'contrast-test',
     loadComponent: () =>
       import('./routes/pages.routes').then((m) => m.ContrastTestComponent),

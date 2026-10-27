@@ -105,6 +105,22 @@
     }
   },
   "F": {
+    "COMPLETED_TASKS": {
+      "TITLE": "المهام المكتملة",
+      "SEARCH_PLACEHOLDER": "بحث في المهام المكتملة...",
+      "FILTER_ALL_PROJECTS": "جميع المشاريع",
+      "FILTER_DATE_ALL": "كل الأوقات",
+      "FILTER_DATE_TODAY": "اليوم",
+      "FILTER_DATE_YESTERDAY": "أمس",
+      "FILTER_DATE_LAST_7_DAYS": "آخر 7 أيام",
+      "FILTER_DATE_LAST_30_DAYS": "آخر 30 يوم",
+      "FILTER_DATE_THIS_MONTH": "هذا الشهر",
+      "NO_TASKS": "لم يتم العثور على مهام مكتملة",
+      "RESTORE_TASK": "استعادة المهمة (إلغاء الإنجاز)",
+      "TASK_RESTORED": "تمت استعادة المهمة بنجاح",
+      "TASK_VIEW_DETAILS": "عرض تفاصيل المهمة",
+      "ARCHIVED_BADGE": "مؤرشفة"
+    },
     "IOS_SHARE": {
       "SAVE": "حفظ",
       "DESTINATION": "صندوق الوارد",
@@ -3155,7 +3171,8 @@
     "TOGGLE_TRACK_TIME": "بدء / إيقاف تتبع الوقت",
     "TRIGGER_SYNC": "تشغيل المزامنة يدويًا",
     "UNPLAN_ALL_TASKS": "إلغاء التخطيط لجميع المهام",
-    "ARCHIVED_PROJECTS": "المشاريع المؤرشفة"
+    "ARCHIVED_PROJECTS": "المشاريع المؤرشفة",
+    "COMPLETED_TASKS": "المهام المكتملة"
   },
   "MIGRATE": {
     "C_DOWNLOAD_BACKUP": "هل تريد تنزيل نسخة احتياطية من بياناتك القديمة (يمكن استخدامها مع الإصدارات السابقة من Super Productivity)؟",

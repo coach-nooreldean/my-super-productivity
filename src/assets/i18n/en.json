@@ -105,6 +105,22 @@
     }
   },
   "F": {
+    "COMPLETED_TASKS": {
+      "TITLE": "Completed Tasks",
+      "SEARCH_PLACEHOLDER": "Search completed tasks...",
+      "FILTER_ALL_PROJECTS": "All Projects",
+      "FILTER_DATE_ALL": "All Time",
+      "FILTER_DATE_TODAY": "Today",
+      "FILTER_DATE_YESTERDAY": "Yesterday",
+      "FILTER_DATE_LAST_7_DAYS": "Last 7 Days",
+      "FILTER_DATE_LAST_30_DAYS": "Last 30 Days",
+      "FILTER_DATE_THIS_MONTH": "This Month",
+      "NO_TASKS": "No completed tasks found",
+      "RESTORE_TASK": "Restore task to active",
+      "TASK_RESTORED": "Task restored to active tasks",
+      "TASK_VIEW_DETAILS": "View task details",
+      "ARCHIVED_BADGE": "Archived"
+    },
     "IOS_SHARE": {
       "SAVE": "Save",
       "DESTINATION": "Inbox",
@@ -3155,7 +3171,8 @@
     "TOGGLE_TRACK_TIME": "Start/stop tracking time",
     "TRIGGER_SYNC": "Sync!",
     "UNPLAN_ALL_TASKS": "Unplan all tasks",
-    "ARCHIVED_PROJECTS": "Archived Projects"
+    "ARCHIVED_PROJECTS": "Archived Projects",
+    "COMPLETED_TASKS": "Completed Tasks"
   },
   "MIGRATE": {
     "C_DOWNLOAD_BACKUP": "Do you want to download a backup of your legacy data (can be used with older versions of Super Productivity)?",
