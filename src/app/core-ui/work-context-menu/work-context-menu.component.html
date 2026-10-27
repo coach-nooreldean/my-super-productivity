@@ -16,6 +16,15 @@
   <span class="text">{{ T.MH.HISTORY | translate }}</span>
 </button>
 
+<button
+  [routerLink]="['/completed-tasks']"
+  [queryParams]="isForProject ? { projectId: contextId } : null"
+  mat-menu-item
+>
+  <mat-icon>task_alt</mat-icon>
+  <span class="text">{{ T.MH.COMPLETED_TASKS | translate }}</span>
+</button>
+
 @if (isForProject || contextId === TODAY_TAG_ID) {
   <button
     [routerLink]="[base, contextId, 'metrics']"

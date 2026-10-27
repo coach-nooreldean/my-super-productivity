@@ -234,6 +234,13 @@ export class MagicNavConfigService {
       { type: 'separator', id: 'sep-3', mtAuto: true },
 
       // App Section
+      {
+        type: 'route',
+        id: 'completed-tasks',
+        label: T.MH.COMPLETED_TASKS,
+        icon: NAV_SECTION_ICON.COMPLETED_TASKS,
+        route: '/completed-tasks',
+      } as NavItem,
       ...(this.isSearchEnabled()
         ? [
             {
