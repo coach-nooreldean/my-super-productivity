@@ -55,6 +55,11 @@ $cross-len: 15;
     pointer-events: none;
   }
 
+  &.is-disabled {
+    cursor: default;
+    opacity: 0.5;
+  }
+
   .done-toggle-svg {
     width: var(--done-toggle-glyph-size);
     height: var(--done-toggle-glyph-size);

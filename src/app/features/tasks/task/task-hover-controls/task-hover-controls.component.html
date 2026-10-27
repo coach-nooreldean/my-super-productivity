@@ -1,4 +1,9 @@
-@if (isTimeTrackingEnabled() && !task().isDone && !task().subTasks?.length) {
+@if (
+  isTimeTrackingEnabled() &&
+  !parent.isReadOnly() &&
+  !task().isDone &&
+  !task().subTasks?.length
+) {
   @if (isCurrent()) {
     <button
       (click)="parent.pauseTask()"
@@ -25,7 +30,7 @@
     </button>
   }
 }
-@if (isShowAddToToday()) {
+@if (isShowAddToToday() && !parent.isReadOnly()) {
   <button
     (click)="parent.addToMyDay()"
     title="{{ T.F.TASK.CMP.ADD_TO_MY_DAY | translate }} {{
@@ -38,7 +43,7 @@
     <mat-icon>wb_sunny</mat-icon>
   </button>
 }
-@if (isShowRemoveFromToday()) {
+@if (isShowRemoveFromToday() && !parent.isReadOnly()) {
   <button
     (click)="parent.unschedule()"
     [title]="T.F.TASK.CMP.REMOVE_FROM_MY_DAY | translate"

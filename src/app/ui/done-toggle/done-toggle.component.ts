@@ -12,20 +12,22 @@ import { performHapticFeedback } from '../../util/haptic-feedback';
   /* eslint-disable @typescript-eslint/naming-convention */
   host: {
     '(click)': 'onClick($event)',
-    '(keydown.enter)': 'toggled.emit(); $event.stopPropagation()',
-    '(keydown.space)':
-      'toggled.emit(); $event.stopPropagation(); $event.preventDefault()',
+    '(keydown.enter)': 'onKeydown($event)',
+    '(keydown.space)': 'onKeydown($event)',
     role: 'checkbox',
     '[attr.aria-checked]': 'isDone()',
+    '[attr.aria-disabled]': 'disabled()',
     tabindex: '0',
     '[class.is-done]': '(showDoneAnimation() || isDone()) && !showUndoneAnimation()',
     '[class.is-current]': 'isCurrent()',
     '[class.is-scale-up]': 'showDoneAnimation() || showUndoneAnimation()',
+    '[class.is-disabled]': 'disabled()',
   },
   /* eslint-enable @typescript-eslint/naming-convention */
 })
 export class DoneToggleComponent {
   readonly isDone = input.required<boolean>();
+  readonly disabled = input<boolean>(false);
   /** Draws a cross instead of a checkmark. Only ever set on a done task. */
   readonly isWontDo = input<boolean>(false);
   readonly isCurrent = input<boolean>(false);
@@ -44,6 +46,10 @@ export class DoneToggleComponent {
   readonly isTouchActive = isTouchActive;
 
   onClick(ev: MouseEvent): void {
+    if (this.disabled()) {
+      ev.stopPropagation();
+      return;
+    }
     // A modifier click selects the task row instead of toggling done; let it
     // bubble to the row.
     if (this.isMultiSelectAware() && isMultiSelectModifierEvent(ev)) {
@@ -56,5 +62,18 @@ export class DoneToggleComponent {
     }
     this.toggled.emit();
     ev.stopPropagation();
+  }
+
+  onKeydown(ev: KeyboardEvent): void {
+    if (this.disabled()) {
+      ev.stopPropagation();
+      ev.preventDefault();
+      return;
+    }
+    this.toggled.emit();
+    ev.stopPropagation();
+    if (ev.key === ' ') {
+      ev.preventDefault();
+    }
   }
 }

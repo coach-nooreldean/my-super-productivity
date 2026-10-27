@@ -1,6 +1,7 @@
 import { computed, inject, Injectable } from '@angular/core';
 import { TaskFocusService } from './task-focus.service';
 import { TaskService } from './task.service';
+import { ReadOnlyModeService } from './read-only-mode.service';
 import { GlobalConfigService } from '../config/global-config.service';
 import { checkKeyCombo } from '../../util/check-key-combo';
 import { Log } from '../../core/log';
@@ -55,6 +56,7 @@ export class TaskShortcutService {
   private readonly _configService = inject(GlobalConfigService);
   private readonly _multiSelect = inject(TaskMultiSelectService);
   private readonly _bulkActions = inject(TaskBulkActionService);
+  private readonly _readOnlyModeService = inject(ReadOnlyModeService);
   readonly isTimeTrackingEnabled = computed(
     () => this._configService.appFeatures().isTimeTrackingEnabled,
   );
@@ -78,6 +80,12 @@ export class TaskShortcutService {
       focusedTaskId ?? plannerRow?.getAttribute('data-task-id') ?? null;
     if (plannerRow && ev.target instanceof HTMLElement && isInputElement(ev.target)) {
       return false;
+    }
+
+    if (this._readOnlyModeService.isReadOnly() && this._isMutatingShortcut(ev, keys)) {
+      ev.preventDefault();
+      ev.stopPropagation();
+      return true;
     }
 
     // Multi-selection: Esc clears; Shift+Arrow extends from the focused row;
@@ -465,6 +473,12 @@ export class TaskShortcutService {
       return false;
     }
 
+    if (this._readOnlyModeService.isReadOnly() && this._isBulkShortcut(ev, keys)) {
+      ev.preventDefault();
+      ev.stopPropagation();
+      return true;
+    }
+
     // Bulk allowlist. Everything else keeps acting on the focused task only.
     const bulkHandlers: [string | null | undefined, () => unknown][] = [
       [keys.taskToggleDone, () => this._bulkActions.toggleDone()],
@@ -517,6 +531,38 @@ export class TaskShortcutService {
         keys.taskOpenEstimationDialog,
         keys.taskOpenContextMenu,
       ].some((combo) => !!combo && checkKeyCombo(ev, combo)) || isNativeContextMenuKey(ev)
+    );
+  }
+
+  private _isMutatingShortcut(ev: KeyboardEvent, keys: KeyboardConfig): boolean {
+    return (
+      [
+        keys.taskScheduleToday,
+        keys.togglePlay,
+        keys.taskEditTitle,
+        keys.taskOpenEstimationDialog,
+        keys.taskSchedule,
+        keys.taskScheduleTomorrow,
+        keys.taskScheduleNextWeek,
+        keys.taskScheduleNextMonth,
+        keys.taskScheduleDeadline,
+        keys.taskUnschedule,
+        keys.taskToggleDone,
+        keys.taskAddSubTask,
+        keys.taskDuplicate,
+        keys.taskAddAttachment,
+        keys.taskDelete,
+        keys.taskMoveToProject,
+        keys.taskEditTags,
+        keys.taskOpenContextMenu,
+        keys.moveToBacklog,
+        keys.moveTaskUp,
+        keys.moveTaskDown,
+        keys.moveTaskToTop,
+        keys.moveTaskToBottom,
+      ].some((combo) => !!combo && checkKeyCombo(ev, combo)) ||
+      ev.key === 'Enter' ||
+      isNativeContextMenuKey(ev)
     );
   }
 

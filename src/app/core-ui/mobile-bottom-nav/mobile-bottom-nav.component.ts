@@ -19,6 +19,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { filter, map } from 'rxjs/operators';
 
 import { LayoutService } from '../layout/layout.service';
+import { ReadOnlyModeService } from '../../features/tasks/read-only-mode.service';
 import { PluginBridgeService } from '../../plugins/plugin-bridge.service';
 import { PluginIconComponent } from '../../plugins/ui/plugin-icon/plugin-icon.component';
 import { Store } from '@ngrx/store';
@@ -66,6 +67,8 @@ export class MobileBottomNavComponent {
   private readonly _workContextService = inject(WorkContextService);
   private readonly _globalConfigService = inject(GlobalConfigService);
   private readonly _router = inject(Router);
+  readonly readOnlyModeService = inject(ReadOnlyModeService);
+  readonly isReadOnly = this.readOnlyModeService.isReadOnly;
 
   isEntrance = input(false);
 

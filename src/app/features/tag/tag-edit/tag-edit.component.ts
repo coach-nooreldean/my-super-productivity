@@ -75,6 +75,7 @@ export class TagEditComponent {
 
   task = input<TaskCopy>();
   isShowMyDayTag = input<boolean>(false);
+  disabled = input<boolean>(false);
   tagIds = input.required<string[]>();
   excludedTagIds = input<string[]>();
   tagUpdate = output<string[]>();
@@ -158,6 +159,9 @@ export class TagEditComponent {
   }
 
   focusInput(): void {
+    if (this.disabled()) {
+      return;
+    }
     const inputEl = this.inputEl();
     if (inputEl) {
       inputEl.nativeElement.focus();
@@ -165,6 +169,9 @@ export class TagEditComponent {
   }
 
   remove(id: string): void {
+    if (this.disabled()) {
+      return;
+    }
     this._updateModel(this.tagIds().filter((tid) => tid !== id));
   }
 
@@ -190,6 +197,9 @@ export class TagEditComponent {
   }
 
   private _updateModel(v: string[]): void {
+    if (this.disabled()) {
+      return;
+    }
     this.tagUpdate.emit(v);
     const task = this.task();
     if (task) {

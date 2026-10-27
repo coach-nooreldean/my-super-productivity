@@ -1,7 +1,7 @@
 <ng-content></ng-content>
 
 <swipe-block
-  [canSwipe]="!isTouchSelecting()"
+  [canSwipe]="!isTouchSelecting() && !isReadOnly()"
   [isDone]="task().isDone"
   (swipeStart)="onSwipeStart()"
   (swipeRight)="toggleTaskDone()"
@@ -19,6 +19,7 @@
         [isWontDo]="isWontDo()"
         [isMultiSelectAware]="focusable()"
         [isCurrent]="isCurrent()"
+        [disabled]="isReadOnly()"
         [showDoneAnimation]="showDoneAnimation()"
         [showUndoneAnimation]="showUndoneAnimation()"
         [attr.aria-label]="
@@ -59,7 +60,7 @@
       <div
         (click)="estimateTimeClick($event)"
         [class.hasNoTimeSpentOrEstimate]="!task().timeSpent && !task().timeEstimate"
-        [style.pointer-events]="task().subTaskIds?.length && 'none'"
+        [style.pointer-events]="(task().subTaskIds?.length || isReadOnly()) && 'none'"
         class="planner-time-remaining-shared"
       >
         <inline-input

@@ -18,6 +18,7 @@ import { OVERDUE_LIST_ID } from '../planner.model';
 import { TranslatePipe } from '@ngx-translate/core';
 import { dragDelayForTouch } from '../../../util/input-intent';
 import { LayoutService } from '../../../core-ui/layout/layout.service';
+import { ReadOnlyModeService } from '../../tasks/read-only-mode.service';
 
 @Component({
   selector: 'planner-day-overdue',
@@ -38,6 +39,8 @@ import { LayoutService } from '../../../core-ui/layout/layout.service';
 export class PlannerDayOverdueComponent {
   protected readonly multiSelect = inject(TaskMultiSelectService);
   private _layoutService = inject(LayoutService);
+  readonly readOnlyModeService = inject(ReadOnlyModeService);
+  readonly isReadOnly = this.readOnlyModeService.isReadOnly;
   overdueTasks = input<TaskCopy[] | null>();
   overdueDeadlineTasks = input<TaskCopy[] | null>();
   totalEstimate = computed(() => {

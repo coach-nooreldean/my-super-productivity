@@ -17,6 +17,7 @@
   <div
     class="normal-tasks-items"
     cdkDropList
+    [cdkDropListDisabled]="isReadOnly()"
     [cdkDropListSortingDisabled]="true"
     [cdkDropListEnterPredicate]="enterPredicate"
     [cdkDropListData]="OVERDUE_LIST_ID"
@@ -27,7 +28,7 @@
         cdkDrag
         [cdkDragData]="task"
         [cdkDragStartDelay]="dragDelayForTouch()"
-        [cdkDragDisabled]="multiSelect.isTouchSelectionMode()"
+        [cdkDragDisabled]="multiSelect.isTouchSelectionMode() || isReadOnly()"
         [cdkDragLockAxis]="isXs() ? 'y' : ''"
         [task]="task"
         [day]=""

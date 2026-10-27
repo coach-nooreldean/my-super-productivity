@@ -1,35 +1,40 @@
 <mat-chip-grid
   #chipListElRef
+  [disabled]="disabled()"
   [attr.aria-label]="T.F.TAG.D_EDIT.LABEL | translate"
 >
   @for (modelItem of tagItems(); track modelItem.id) {
     <mat-chip-row
       (removed)="remove(modelItem.id)"
-      [removable]="true"
+      [removable]="!disabled()"
     >
       <tag [tag]="modelItem"></tag>
 
-      <mat-icon
-        [title]="T.G.REMOVE | translate"
-        matChipRemove
-        >cancel
-      </mat-icon>
+      @if (!disabled()) {
+        <mat-icon
+          [title]="T.G.REMOVE | translate"
+          matChipRemove
+          >cancel
+        </mat-icon>
+      }
     </mat-chip-row>
   }
-  <input
-    #inputElRef
-    (matChipInputTokenEnd)="add($event)"
-    [formControl]="inputCtrl"
-    [matAutocomplete]="autoElRef"
-    [matChipInputAddOnBlur]="true"
-    [matChipInputFor]="chipListElRef"
-    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-    (keydown)="onKeydown($event)"
-    [placeholder]="T.F.TAG.D_EDIT.PLACEHOLDER | translate"
-    spChipAutocompleteKeys
-    (suggestionAccepted)="acceptSuggestion($event)"
-    (textCommitted)="commitText($event)"
-  />
+  @if (!disabled()) {
+    <input
+      #inputElRef
+      (matChipInputTokenEnd)="add($event)"
+      [formControl]="inputCtrl"
+      [matAutocomplete]="autoElRef"
+      [matChipInputAddOnBlur]="true"
+      [matChipInputFor]="chipListElRef"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      (keydown)="onKeydown($event)"
+      [placeholder]="T.F.TAG.D_EDIT.PLACEHOLDER | translate"
+      spChipAutocompleteKeys
+      (suggestionAccepted)="acceptSuggestion($event)"
+      (textCommitted)="commitText($event)"
+    />
+  }
 </mat-chip-grid>
 <mat-autocomplete
   #autoElRef="matAutocomplete"

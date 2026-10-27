@@ -1,7 +1,7 @@
 @let t = task();
 <swipe-block
   [isDone]="t.isDone"
-  [canSwipe]="!taskTitleEditEl?.isEditing() && !isTouchSelectionMode()"
+  [canSwipe]="!taskTitleEditEl?.isEditing() && !isTouchSelectionMode() && !isReadOnly()"
   (swipeStart)="onSwipeStart()"
   (swipeRight)="toggleTaskDone()"
   (swipeRightTriggered)="onSwipeRightTriggered($event)"
@@ -28,6 +28,7 @@
           ></div>
         } @else {
           <done-toggle
+            [disabled]="isReadOnly()"
             [isDone]="t.isDone"
             [isWontDo]="isWontDo()"
             [isMultiSelectAware]="true"
@@ -53,7 +54,7 @@
             (click)="clearSelectionOnTitleClick($event)"
             [resetToLastExternalValueTrigger]="t"
             [style.pointer-events]="isTouchActive() && t.title.length ? 'none' : 'auto'"
-            [readonly]="isTouchSelectionMode()"
+            [readonly]="isTouchSelectionMode() || isReadOnly()"
             #taskTitleEditEl
             (valueEdited)="updateTaskTitleIfChanged($event)"
             [value]="t.title"
@@ -74,13 +75,15 @@
           (click)="onTimeWrapperClick($event)"
           (keydown.enter)="estimateTime()"
           (keydown.space)="$event.preventDefault(); estimateTime()"
-          [attr.role]="!t.subTasks?.length ? 'button' : null"
-          [attr.tabindex]="!t.subTasks?.length ? 0 : null"
+          [attr.role]="!t.subTasks?.length && !isReadOnly() ? 'button' : null"
+          [attr.tabindex]="!t.subTasks?.length && !isReadOnly() ? 0 : null"
           [attr.aria-label]="
-            !t.subTasks?.length ? (T.F.TASK.CMP.ESTIMATE | translate) : null
+            !t.subTasks?.length && !isReadOnly()
+              ? (T.F.TASK.CMP.ESTIMATE | translate)
+              : null
           "
           [class.hasNoTimeSpentOrEstimate]="!t.timeSpent && !t.timeEstimate"
-          [class.isEditable]="!t.subTasks?.length"
+          [class.isEditable]="!t.subTasks?.length && !isReadOnly()"
           class="time-wrapper"
         >
           @if (!t.subTasks?.length) {

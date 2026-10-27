@@ -20,10 +20,12 @@ export enum BannerId {
   UpdateAvailable = 'UpdateAvailable',
   LocalRecoveryPoint = 'LocalRecoveryPoint',
   TrackingMovedToOtherDevice = 'TrackingMovedToOtherDevice',
+  ReadOnlyMode = 'ReadOnlyMode',
 }
 
 export const BANNER_SORT_PRIO_MAP = {
   [BannerId.TakeABreak]: 6,
+  [BannerId.ReadOnlyMode]: 5,
   [BannerId.CalendarEvent]: 5,
   [BannerId.SimpleCounterCountdownComplete]: 5,
   [BannerId.FocusModeSessionDone]: 5,
