@@ -24,6 +24,7 @@
 
 <div
   cdkDropList
+  [cdkDropListDisabled]="isReadOnly()"
   [cdkDropListConnectedTo]="dropListService.dropLists | async"
   [cdkDropListSortingDisabled]="isSortingDisabled()"
   [cdkDropListEnterPredicate]="enterPredicate"
@@ -47,7 +48,9 @@
       cdkDrag
       [cdkDragStartDelay]="dragDelayForTouch()"
       [cdkDragLockAxis]="isXs() ? 'y' : ''"
-      [cdkDragDisabled]="listModelId() === 'LATER_TODAY' || isTouchSelectionMode()"
+      [cdkDragDisabled]="
+        isReadOnly() || listModelId() === 'LATER_TODAY' || isTouchSelectionMode()
+      "
       [cdkDragData]="task"
       [class.multi-drag-source]="
         multiDrag.isListGroupDrag() && multiDrag.draggedIds().has(task.id)

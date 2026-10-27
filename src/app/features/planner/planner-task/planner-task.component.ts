@@ -69,6 +69,7 @@ import { TODAY_TAG } from '../../tag/tag.const';
 import { ADD_TASK_INLINE_BTN_SELECTOR } from '../add-task-inline/add-task-inline.const';
 import { getNextPlannerAddButton } from '../get-next-planner-add-button';
 import { IssueSyncStateService } from '../../issue/two-way-sync/issue-sync-state.service';
+import { ReadOnlyModeService } from '../../tasks/read-only-mode.service';
 
 @Component({
   selector: 'planner-task',
@@ -115,6 +116,8 @@ export class PlannerTaskComponent implements OnInit, OnDestroy, AfterViewInit {
   private _store = inject(Store);
   private _dateService = inject(DateService);
   private _dateAdapter = inject(DateAdapter);
+  readonly readOnlyModeService = inject(ReadOnlyModeService);
+  readonly isReadOnly = this.readOnlyModeService.isReadOnly;
   private _isTaskDeleteTriggered = false;
   private _isDestroyed = false;
   private _completionFocusFallback?: {
@@ -164,6 +167,10 @@ export class PlannerTaskComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @HostListener('contextmenu', ['$event'])
   onContextMenu(event: MouseEvent): void {
+    if (this.readOnlyModeService.isReadOnly()) {
+      event.preventDefault();
+      return;
+    }
     if (isTouchActive()) {
       event.preventDefault();
       return;
@@ -391,6 +398,9 @@ export class PlannerTaskComponent implements OnInit, OnDestroy, AfterViewInit {
       !event.metaKey &&
       (event.key === 'ArrowLeft' || event.key === 'ArrowRight')
     ) {
+      if (this.readOnlyModeService.isReadOnly()) {
+        return;
+      }
       this._moveOneDay(event.key === 'ArrowLeft' ? -1 : 1);
       event.preventDefault();
       event.stopPropagation();
@@ -689,6 +699,9 @@ export class PlannerTaskComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   private _runMutationWithFocus(mutation: () => void): void {
+    if (this.readOnlyModeService.isReadOnly()) {
+      return;
+    }
     const rows = this._plannerRows();
     const host = this._elementRef.nativeElement as HTMLElement;
     const index = rows.indexOf(host);
@@ -822,6 +835,9 @@ export class PlannerTaskComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   toggleTaskDone(): void {
+    if (this.readOnlyModeService.isReadOnly()) {
+      return;
+    }
     window.clearTimeout(this._doneAnimationTimeout);
     const t = this.task();
     this._doneAnimationTimeout = this._taskService.toggleDoneWithAnimation(
@@ -832,6 +848,9 @@ export class PlannerTaskComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   openContextMenu(event?: TouchEvent | MouseEvent): void {
+    if (this.readOnlyModeService.isReadOnly()) {
+      return;
+    }
     if (event) {
       event.preventDefault();
       event.stopPropagation();
@@ -852,6 +871,9 @@ export class PlannerTaskComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   updateTimeEstimate(val: number): void {
+    if (this.readOnlyModeService.isReadOnly()) {
+      return;
+    }
     this._taskService.update(this.task().id, {
       timeEstimate: val,
     });

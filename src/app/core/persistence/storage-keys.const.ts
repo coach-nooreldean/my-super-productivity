@@ -38,6 +38,8 @@ export enum LS {
 
   LAST_NOTE_BANNER_DAY = 'SUP_LAST_NOTE_BANNER_DAY',
 
+  IS_READ_ONLY_MODE = 'SUP_IS_READ_ONLY_MODE',
+
   // Set once the user acts on or dismisses the "set up sync to keep your data
   // safe" startup banner, so the nudge is shown at most once ever.
   SYNC_SAFETY_NUDGE_DISMISSED = 'SUP_SYNC_SAFETY_NUDGE_DISMISSED',

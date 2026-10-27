@@ -38,6 +38,7 @@ import { LayoutService } from '../../../core-ui/layout/layout.service';
 import { DateTimeFormatService } from '../../../core/date-time-format/date-time-format.service';
 import { parseDbDateStr } from '../../../util/parse-db-date-str';
 import { safeFormatDate } from '../../../util/safe-format-date';
+import { ReadOnlyModeService } from '../../tasks/read-only-mode.service';
 
 @Component({
   selector: 'planner-day',
@@ -70,6 +71,8 @@ export class PlannerDayComponent {
   private _dateService = inject(DateService);
   private _layoutService = inject(LayoutService);
   private _dateTimeFormatService = inject(DateTimeFormatService);
+  readonly readOnlyModeService = inject(ReadOnlyModeService);
+  readonly isReadOnly = this.readOnlyModeService.isReadOnly;
 
   // TODO: Skipped for migration because:
   //  This input is used in a control flow expression (e.g. `@if` or `*ngIf`)
@@ -127,6 +130,9 @@ export class PlannerDayComponent {
     allItems: TaskCopy[] | ScheduleItem[],
     ev: CdkDragDrop<string, string, TaskCopy>,
   ): void {
+    if (this.isReadOnly()) {
+      return;
+    }
     const newDay = ev.container.data;
     const task = ev.item.data;
 
@@ -169,6 +175,9 @@ export class PlannerDayComponent {
   }
 
   editTaskReminderOrReScheduleIfPossible(task: TaskCopy, newDay?: string): void {
+    if (this.isReadOnly()) {
+      return;
+    }
     if (newDay) {
       const newDate = dateStrToUtcDate(newDay);
       if (task.dueWithTime) {

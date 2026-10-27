@@ -16,6 +16,7 @@ import {
   viewChild,
 } from '@angular/core';
 import { TaskService } from '../task.service';
+import { ReadOnlyModeService } from '../read-only-mode.service';
 import { TaskDuplicateService } from '../task-duplicate.service';
 import { TaskMultiSelectService } from '../task-multi-select.service';
 import { TaskMoveToProjectService } from '../task-move-to-project.service';
@@ -217,6 +218,8 @@ export class TaskComponent implements OnDestroy, AfterViewInit {
   readonly workContextService = inject(WorkContextService);
   readonly layoutService = inject(LayoutService);
   readonly globalTrackingIntervalService = inject(GlobalTrackingIntervalService);
+  readonly readOnlyModeService = inject(ReadOnlyModeService);
+  readonly isReadOnly = this.readOnlyModeService.isReadOnly;
 
   task = input.required<TaskWithSubTasks>();
   isBacklog = input<boolean>(false);
@@ -692,6 +695,7 @@ export class TaskComponent implements OnDestroy, AfterViewInit {
   }
 
   scheduleTask(): void {
+    if (this.readOnlyModeService.isReadOnly()) return;
     this._storeNextFocusEl();
     this._matDialog
       .open(DialogScheduleTaskComponent, {
@@ -706,6 +710,7 @@ export class TaskComponent implements OnDestroy, AfterViewInit {
   }
 
   openDeadlineDialog(): void {
+    if (this.readOnlyModeService.isReadOnly()) return;
     this._storeNextFocusEl();
     this._matDialog
       .open(DialogDeadlineComponent, {
@@ -739,6 +744,7 @@ export class TaskComponent implements OnDestroy, AfterViewInit {
   }
 
   private async _scheduleForDay(dayDate: Date): Promise<void> {
+    if (this.readOnlyModeService.isReadOnly()) return;
     const day = getDbDateStr(dayDate);
     const task = this.task();
     if (task.dueWithTime) {
@@ -788,7 +794,7 @@ export class TaskComponent implements OnDestroy, AfterViewInit {
 
   deleteTask(isClick: boolean = false): void {
     // NOTE: prevents attempts to delete the same task multiple times
-    if (this._isTaskDeleteTriggered) {
+    if (this._isTaskDeleteTriggered || this.readOnlyModeService.isReadOnly()) {
       return;
     }
 
@@ -831,15 +837,18 @@ export class TaskComponent implements OnDestroy, AfterViewInit {
   }
 
   startTask(): void {
+    if (this.readOnlyModeService.isReadOnly()) return;
     this._taskService.setCurrentId(this.task().id);
     this.focusSelf();
   }
 
   pauseTask(): void {
+    if (this.readOnlyModeService.isReadOnly()) return;
     this._taskService.pauseCurrent();
   }
 
   togglePlayPause(): void {
+    if (this.readOnlyModeService.isReadOnly()) return;
     if (this.isCurrent()) {
       this.pauseTask();
     } else {
@@ -1028,6 +1037,9 @@ export class TaskComponent implements OnDestroy, AfterViewInit {
     blurEvent?: FocusEvent;
     submitTrigger: SubmitTrigger;
   }): void {
+    if (this.readOnlyModeService.isReadOnly()) {
+      return;
+    }
     const task = this.task();
 
     if (wasChanged) {
@@ -1074,14 +1086,18 @@ export class TaskComponent implements OnDestroy, AfterViewInit {
   }
 
   onTimeWrapperClick(ev: MouseEvent): void {
-    if (isMultiSelectModifierEvent(ev) || this._multiSelect.isTouchSelectionMode()) {
+    if (
+      isMultiSelectModifierEvent(ev) ||
+      this._multiSelect.isTouchSelectionMode() ||
+      this.readOnlyModeService.isReadOnly()
+    ) {
       return;
     }
     this.estimateTime();
   }
 
   estimateTime(): void {
-    if (this.task().subTaskIds?.length > 0) {
+    if (this.readOnlyModeService.isReadOnly() || this.task().subTaskIds?.length > 0) {
       return;
     }
 
@@ -1177,6 +1193,7 @@ export class TaskComponent implements OnDestroy, AfterViewInit {
   }
 
   toggleTaskDone(): void {
+    if (this.readOnlyModeService.isReadOnly()) return;
     if (!this._multiSelect.isTouchSelectionMode()) this._multiSelect.clear();
     window.clearTimeout(this._doneAnimationTimeout);
     this.focusNext(true, true);
@@ -1266,6 +1283,7 @@ export class TaskComponent implements OnDestroy, AfterViewInit {
   isTagMenuVisible = signal(false);
 
   async editTags(): Promise<void> {
+    if (this.readOnlyModeService.isReadOnly()) return;
     this.isTagMenuVisible.set(true);
     setTimeout(() => {
       this.tagToggleMenuList()?.openMenu();
@@ -1442,7 +1460,7 @@ export class TaskComponent implements OnDestroy, AfterViewInit {
   }
 
   onHostContextMenu(event: MouseEvent): void {
-    if (isTouchActive()) {
+    if (isTouchActive() || this.readOnlyModeService.isReadOnly()) {
       event.preventDefault();
       return;
     }
@@ -1450,6 +1468,11 @@ export class TaskComponent implements OnDestroy, AfterViewInit {
   }
 
   openContextMenu(event?: TouchEvent | MouseEvent | KeyboardEvent): void {
+    if (this.readOnlyModeService.isReadOnly()) {
+      event?.preventDefault();
+      event?.stopPropagation();
+      return;
+    }
     this.taskTitleEditEl()?.cancelEditing();
     // A selected row opens the bulk menu for the whole selection; an unselected
     // row while a selection exists clears it and acts alone (file-manager rule).

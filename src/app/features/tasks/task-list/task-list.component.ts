@@ -13,6 +13,7 @@ import {
 } from '@angular/core';
 import { DropListModelSource, Task, TaskCopy, TaskWithSubTasks } from '../task.model';
 import { TaskService } from '../task.service';
+import { ReadOnlyModeService } from '../read-only-mode.service';
 import { isWontDoTask } from '../util/is-wont-do-task';
 import { expandFadeFastAnimation } from '../../../ui/animations/expand.ani';
 import { filterDoneTasks } from '../filter-done-tasks.pipe';
@@ -134,6 +135,8 @@ export class TaskListComponent implements OnDestroy, AfterViewInit {
   private readonly _taskMultiSelectService = inject(TaskMultiSelectService);
   protected readonly isTouchSelectionMode =
     this._taskMultiSelectService.isTouchSelectionMode;
+  readonly readOnlyModeService = inject(ReadOnlyModeService);
+  readonly isReadOnly = this.readOnlyModeService.isReadOnly;
   // Lock Y-axis on small screens only — on wider screens the task list may sit
   // beside a side-nav or other drop targets that require horizontal dragging.
   protected readonly isXs = this._layoutService.isXs;
@@ -260,6 +263,7 @@ export class TaskListComponent implements OnDestroy, AfterViewInit {
   }
 
   enterPredicate = (drag: CdkDrag, drop: CdkDropList): boolean => {
+    if (this.isReadOnly()) return false;
     // TODO this gets called very often for nested lists. Maybe there are possibilities to optimize
     // A section dragged by its header (see the work view's acceptSectionDragOnly)
     // is not a task: no task list takes it, so it snaps back (#10866).
@@ -440,6 +444,9 @@ export class TaskListComponent implements OnDestroy, AfterViewInit {
       TaskWithSubTasks | SearchResultItem
     >,
   ): Promise<void> {
+    if (this.isReadOnly()) {
+      return;
+    }
     const srcListData = ev.previousContainer.data;
     const targetListData = ev.container.data;
     const draggedTask = ev.item.data;

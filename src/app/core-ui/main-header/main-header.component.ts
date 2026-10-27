@@ -15,6 +15,7 @@ import {
 import { ProjectService } from '../../features/project/project.service';
 import { LayoutService } from '../layout/layout.service';
 import { TaskService } from '../../features/tasks/task.service';
+import { ReadOnlyModeService } from '../../features/tasks/read-only-mode.service';
 import { T } from '../../t.const';
 import { filter, map, switchMap } from 'rxjs/operators';
 import { of, Subscription } from 'rxjs';
@@ -98,6 +99,8 @@ export class MainHeaderComponent implements OnDestroy {
   readonly simpleCounterService = inject(SimpleCounterService);
   readonly syncWrapperService = inject(SyncWrapperService);
   readonly globalConfigService = inject(GlobalConfigService);
+  readonly readOnlyModeService = inject(ReadOnlyModeService);
+  readonly isReadOnly = this.readOnlyModeService.isReadOnly;
   private readonly _snackService = inject(SnackService);
   private readonly _configService = inject(GlobalConfigService);
   private readonly _dataInitStateService = inject(DataInitStateService);
@@ -107,6 +110,10 @@ export class MainHeaderComponent implements OnDestroy {
   });
 
   T: typeof T = T;
+
+  toggleReadOnlyMode(): void {
+    this.readOnlyModeService.toggleReadOnlyMode();
+  }
 
   isXs = this.layoutService.isXs;
 

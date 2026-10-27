@@ -27,6 +27,8 @@ import { map } from 'rxjs/operators';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { toSignal } from '@angular/core/rxjs-interop';
 
+import { ReadOnlyModeService } from '../../features/tasks/read-only-mode.service';
+
 const XS_BREAKPOINT = 600;
 const XXXS_BREAKPOINT = 398;
 const maxWidthMediaQuery = (breakpoint: number): string =>
@@ -48,6 +50,7 @@ export class LayoutService {
 
   private _store$ = inject<Store<LayoutState>>(Store);
   private _breakPointObserver = inject(BreakpointObserver);
+  private _readOnlyModeService = inject(ReadOnlyModeService);
   private _previouslyFocusedElement: HTMLElement | null = null;
   private _pendingFocusTaskId: string | null = null; // store new task id until user closes the bar
   private _pendingTaskRevealTimeout?: number;
@@ -132,6 +135,9 @@ export class LayoutService {
   readonly isPanelResizing = signal(false);
 
   showAddTaskBar(): void {
+    if (this._readOnlyModeService.isReadOnly()) {
+      return;
+    }
     // Store currently focused element if it's a task
     const activeElement = document.activeElement as HTMLElement;
     if (activeElement && activeElement.id && activeElement.id.startsWith('t-')) {

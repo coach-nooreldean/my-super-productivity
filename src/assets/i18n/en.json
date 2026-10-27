@@ -12,6 +12,10 @@
       "LATER": "Later",
       "MSG": "SuperSync requires an encryption password, but this account doesn't have one yet. Set one to protect your data — it stays and is re-uploaded encrypted on the next sync."
     },
+    "B_READ_ONLY_MODE": {
+      "MSG": "Read-Only Mode is active. Tasks and notes cannot be edited, added, or deleted.",
+      "UNLOCK": "Unlock"
+    },
     "B_RECOVERY_POINT": {
       "BROWSE": "Browse backups",
       "DISMISS": "Keep new data",
@@ -3101,6 +3105,8 @@
     "GO_TO_TASK_LIST": "Go to task list",
     "HABITS": "Habits",
     "HELP": "Help",
+    "READ_ONLY_MODE_ENABLE": "Enable Read-Only Mode",
+    "READ_ONLY_MODE_DISABLE": "Disable Read-Only Mode",
     "HM": {
       "CALENDARS": "How to: Connect calendars",
       "CONTRIBUTE": "Contribute",

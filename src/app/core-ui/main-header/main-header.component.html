@@ -66,7 +66,7 @@
       (wheel)="onActionWheel($event)"
     >
       <div class="header-action-group primary-action-group">
-        @if (isDataLoaded() && isTimeTrackingEnabled()) {
+        @if (isDataLoaded() && isTimeTrackingEnabled() && !isReadOnly()) {
           <play-button
             [isMobile]="isXs()"
             [currentTaskId]="currentTaskId()"
@@ -78,7 +78,7 @@
              finishes, and the primary quick-capture entry point must not be
              missing for that window (#9420). Absent below 600px, where the
              bottom nav's FAB is its home instead. -->
-        @if (!hasBottomNav()) {
+        @if (!hasBottomNav() && !isReadOnly()) {
           <button
             emlDrop
             (click)="layoutService.showAddTaskBar()"
@@ -92,6 +92,24 @@
             <mat-icon>add</mat-icon>
           </button>
         }
+
+        <button
+          (click)="toggleReadOnlyMode()"
+          [matTooltip]="
+            (isReadOnly() ? T.MH.READ_ONLY_MODE_DISABLE : T.MH.READ_ONLY_MODE_ENABLE)
+              | translate
+          "
+          [color]="isReadOnly() ? 'warn' : ''"
+          [attr.aria-label]="
+            (isReadOnly() ? T.MH.READ_ONLY_MODE_DISABLE : T.MH.READ_ONLY_MODE_ENABLE)
+              | translate
+          "
+          class="read-only-toggle-btn"
+          mat-icon-button
+          type="button"
+        >
+          <mat-icon>{{ isReadOnly() ? 'lock' : 'lock_open' }}</mat-icon>
+        </button>
       </div>
 
       @if (isDataLoaded()) {

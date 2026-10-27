@@ -50,6 +50,7 @@
   <div
     class="normal-tasks-items"
     cdkDropList
+    [cdkDropListDisabled]="isReadOnly()"
     [cdkDropListData]="day.dayDate"
     [cdkDropListAutoScrollStep]="8"
     (cdkDropListDropped)="drop('TODO', day.tasks, $event)"
@@ -59,7 +60,7 @@
         cdkDrag
         [cdkDragData]="task"
         [cdkDragStartDelay]="dragDelayForTouch()"
-        [cdkDragDisabled]="multiSelect.isTouchSelectionMode()"
+        [cdkDragDisabled]="multiSelect.isTouchSelectionMode() || isReadOnly()"
         [cdkDragLockAxis]="isXs() ? 'y' : ''"
         [task]="task"
         [day]="day.dayDate"
@@ -96,7 +97,9 @@
     }
   </div>
 
-  <add-task-inline [planForDay]="day.dayDate"></add-task-inline>
+  @if (!isReadOnly()) {
+    <add-task-inline [planForDay]="day.dayDate"></add-task-inline>
+  }
 </div>
 
 <div
@@ -113,6 +116,7 @@
     class="scheduled-items"
     cdkDropList
     cdkDropListSortingDisabled
+    [cdkDropListDisabled]="isReadOnly()"
     [cdkDropListData]="day.dayDate"
     [cdkDropListAutoScrollStep]="8"
     (cdkDropListDropped)="drop('SCHEDULED', day.scheduledIItems, $event)"
@@ -150,7 +154,7 @@
               [focusable]="true"
               [cdkDragData]="scheduledItem.task"
               [cdkDragStartDelay]="dragDelayForTouch()"
-              [cdkDragDisabled]="multiSelect.isTouchSelectionMode()"
+              [cdkDragDisabled]="multiSelect.isTouchSelectionMode() || isReadOnly()"
               [cdkDragLockAxis]="isXs() ? 'y' : ''"
             ></planner-task>
           }
