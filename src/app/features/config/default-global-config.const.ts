@@ -61,6 +61,7 @@ export const DEFAULT_GLOBAL_CONFIG: GlobalConfigState = {
     startOfNextDay: 0,
     startOfNextDayTime: '00:00',
     isDisableAnimations: false,
+    isHideEmptyPlannerDays: false,
     isVerticalActionBar: false,
     // Confetti is attention-grabbing, so it ships off and stays opt-in
     // (product principle: less noise, more depth). Existing installs keep

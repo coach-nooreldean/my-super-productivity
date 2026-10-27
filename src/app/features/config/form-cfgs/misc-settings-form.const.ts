@@ -106,6 +106,15 @@ export const MISC_SETTINGS_FORM_CFG: ConfigFormSection<MiscConfig> = {
       },
     },
     {
+      key: 'isHideEmptyPlannerDays',
+      type: 'checkbox',
+      defaultValue: false,
+      templateOptions: {
+        label: T.GCF.MISC.IS_HIDE_EMPTY_PLANNER_DAYS,
+        description: T.GCF.MISC.IS_HIDE_EMPTY_PLANNER_DAYS_HINT,
+      },
+    },
+    {
       key: 'isVerticalActionBar',
       type: 'checkbox',
       templateOptions: {

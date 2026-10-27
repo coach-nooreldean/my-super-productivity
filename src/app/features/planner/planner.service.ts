@@ -1,6 +1,13 @@
 import { effect, inject, Injectable, signal } from '@angular/core';
 import { BehaviorSubject, combineLatest, Observable, of } from 'rxjs';
-import { first, map, shareReplay, switchMap, tap } from 'rxjs/operators';
+import {
+  first,
+  map,
+  shareReplay,
+  switchMap,
+  tap,
+  distinctUntilChanged,
+} from 'rxjs/operators';
 import { selectAllTasksWithDueTime } from '../tasks/store/task.selectors';
 import { Store } from '@ngrx/store';
 import { CalendarIntegrationService } from '../calendar-integration/calendar-integration.service';
@@ -18,6 +25,7 @@ import { selectActiveTaskRepeatCfgs } from '../task-repeat-cfg/store/task-repeat
 import { Log } from '../../core/log';
 import { LayoutService } from '../../core-ui/layout/layout.service';
 import { buildDayWindow } from './util/build-day-window';
+import { GlobalConfigService } from '../config/global-config.service';
 
 @Injectable({
   providedIn: 'root',
@@ -32,8 +40,15 @@ export class PlannerService {
   private _dateService = inject(DateService);
   private _globalTrackingIntervalService = inject(GlobalTrackingIntervalService);
   private _layoutService = inject(LayoutService);
+  private _globalConfigService = inject(GlobalConfigService);
 
   private _userHasScrolled = signal(false);
+  private _revealedDays$ = new BehaviorSubject<ReadonlySet<string>>(new Set());
+
+  isHideEmptyDays$ = this._globalConfigService.misc$.pipe(
+    map((misc) => !!misc?.isHideEmptyPlannerDays),
+    distinctUntilChanged(),
+  );
 
   private _daysToShowCount$ = new BehaviorSubject<number>(
     this._layoutService.isXs()
@@ -123,14 +138,56 @@ export class PlannerService {
     );
   }
 
-  days$: Observable<PlannerDay[]> = this._selectPlannerDaysFor$(this.daysToShow$).pipe(
-    // for better performance
-    // TODO better solution, gets called very often
-    // tap((val) => Log.log('days$', val)),
-    // tap((val) => Log.log('days$ SIs', val[0]?.scheduledIItems)),
+  revealDay(dayDate: string): void {
+    this.ensureDayLoaded(dayDate);
+    const set = new Set(this._revealedDays$.value);
+    set.add(dayDate);
+    this._revealedDays$.next(set);
+  }
+
+  allDays$: Observable<PlannerDay[]> = this._selectPlannerDaysFor$(this.daysToShow$).pipe(
     shareReplay({ bufferSize: 1, refCount: true }),
   );
-  tomorrow$ = this.days$.pipe(
+
+  private _isDayActive(day: PlannerDay): boolean {
+    return (
+      day.tasks.length > 0 ||
+      day.scheduledIItems.length > 0 ||
+      day.deadlineTasks.length > 0 ||
+      day.noStartTimeRepeatProjections.length > 0 ||
+      day.allDayEvents.length > 0
+    );
+  }
+
+  days$: Observable<PlannerDay[]> = combineLatest([
+    this.allDays$,
+    this.isHideEmptyDays$,
+    this._revealedDays$,
+  ]).pipe(
+    map(([days, isHideEmpty, revealedDays]) => {
+      const filtered = !isHideEmpty
+        ? days
+        : days.filter(
+            (day) =>
+              day.isToday || this._isDayActive(day) || revealedDays.has(day.dayDate),
+          );
+      return { filtered, isHideEmpty };
+    }),
+    tap(({ filtered, isHideEmpty }) => {
+      if (
+        isHideEmpty &&
+        filtered.length < 5 &&
+        this._daysToShowCount$.value < 60 &&
+        !this.isLoadingMore$.value
+      ) {
+        this.loadMoreDays();
+      }
+    }),
+    map(({ filtered }) => filtered),
+    shareReplay({ bufferSize: 1, refCount: true }),
+  );
+
+  tomorrow$ = this.allDays$.pipe(
     map((days) => {
       const tomorrowStr = getDbDateStr(this._dateService.getLogicalTomorrowMs());
       return days.find((d) => d.dayDate === tomorrowStr) ?? null;
@@ -196,6 +253,7 @@ export class PlannerService {
     }
     this.isLoadingMore$.next(false);
     this._userHasScrolled.set(false);
+    this._revealedDays$.next(new Set());
     this._daysToShowCount$.next(
       this._layoutService.isXs()
         ? PlannerService.INITIAL_DAYS_MOBILE

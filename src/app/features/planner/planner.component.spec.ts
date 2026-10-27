@@ -7,14 +7,19 @@ import { DateService } from '../../core/date/date.service';
 import { LayoutService } from '../../core-ui/layout/layout.service';
 import { selectTaskFeatureState } from '../tasks/store/task.selectors';
 import { selectPlannerDayMap } from './store/planner.selectors';
-import { signal } from '@angular/core';
+import { signal, WritableSignal } from '@angular/core';
 import { PlannerDay } from './planner.model';
+import { GlobalConfigService } from '../config/global-config.service';
 
 describe('PlannerComponent', () => {
   let fixture: ComponentFixture<PlannerComponent>;
   let component: PlannerComponent;
   let mockPlannerService: jasmine.SpyObj<PlannerService>;
   let mockDateService: jasmine.SpyObj<DateService>;
+  let mockGlobalConfigService: {
+    updateSection: jasmine.Spy;
+    misc: WritableSignal<{ isHideEmptyPlannerDays?: boolean }>;
+  };
   let mockLayoutService: { isXs: ReturnType<typeof signal<boolean>> };
   let days$: BehaviorSubject<PlannerDay[]>;
 
@@ -39,12 +44,18 @@ describe('PlannerComponent', () => {
       'loadMoreDays',
       'resetScrollState',
       'ensureDayLoaded',
+      'revealDay',
     ]);
     mockPlannerService.days$ = days$;
     mockPlannerService.isLoadingMore$ = new BehaviorSubject<boolean>(false);
 
     mockDateService = jasmine.createSpyObj('DateService', ['todayStr']);
     mockDateService.todayStr.and.returnValue('2026-02-16');
+
+    mockGlobalConfigService = {
+      updateSection: jasmine.createSpy('updateSection'),
+      misc: signal({ isHideEmptyPlannerDays: false }),
+    };
 
     mockLayoutService = {
       isXs: signal(false),
@@ -56,6 +67,7 @@ describe('PlannerComponent', () => {
         { provide: PlannerService, useValue: mockPlannerService },
         { provide: DateService, useValue: mockDateService },
         { provide: LayoutService, useValue: mockLayoutService },
+        { provide: GlobalConfigService, useValue: mockGlobalConfigService },
         provideMockStore({
           selectors: [
             {
@@ -172,6 +184,33 @@ describe('PlannerComponent', () => {
       fixture.detectChanges();
 
       expect(component.daysWithTasks().has(outOfWindowDay)).toBeTrue();
+    });
+  });
+
+  describe('toolbar actions', () => {
+    it('should toggle isHideEmptyPlannerDays', () => {
+      mockGlobalConfigService.misc.set({ isHideEmptyPlannerDays: false });
+      component.toggleHideEmptyDays();
+      expect(mockGlobalConfigService.updateSection).toHaveBeenCalledWith('misc', {
+        isHideEmptyPlannerDays: true,
+      });
+
+      mockGlobalConfigService.misc.set({ isHideEmptyPlannerDays: true });
+      component.toggleHideEmptyDays();
+      expect(mockGlobalConfigService.updateSection).toHaveBeenCalledWith('misc', {
+        isHideEmptyPlannerDays: false,
+      });
+    });
+
+    it('should reveal day and scroll on day picked', () => {
+      const date = new Date(2026, 2, 15);
+      component.onDayPicked(date);
+      expect(mockPlannerService.revealDay).toHaveBeenCalledWith('2026-03-15');
+    });
+
+    it('should reveal day on calendar day tapped', () => {
+      component.onCalendarDayTapped('2026-03-20');
+      expect(mockPlannerService.revealDay).toHaveBeenCalledWith('2026-03-20');
     });
   });
 });

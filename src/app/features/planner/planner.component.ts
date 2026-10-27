@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  viewChild,
+} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { DateService } from '../../core/date/date.service';
 import { PlannerActions } from './store/planner.actions';
@@ -12,6 +18,14 @@ import { PlannerCalendarNavComponent } from './planner-calendar-nav/planner-cale
 import { PlannerService } from './planner.service';
 import { LayoutService } from '../../core-ui/layout/layout.service';
 import { selectPlannerDayMap } from './store/planner.selectors';
+import { GlobalConfigService } from '../config/global-config.service';
+import { MatButton, MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatDatepicker, MatDatepickerInput } from '@angular/material/datepicker';
+import { MatInput } from '@angular/material/input';
+import { TranslatePipe } from '@ngx-translate/core';
+import { getDbDateStr } from '../../util/get-db-date-str';
 
 @Component({
   selector: 'planner',
@@ -23,15 +37,30 @@ import { selectPlannerDayMap } from './store/planner.selectors';
     PlannerPlanViewComponent,
     CdkScrollable,
     PlannerCalendarNavComponent,
+    MatButton,
+    MatIconButton,
+    MatIcon,
+    MatTooltip,
+    MatDatepicker,
+    MatDatepickerInput,
+    MatInput,
+    TranslatePipe,
   ],
 })
 export class PlannerComponent {
   private _store = inject(Store);
   private _dateService = inject(DateService);
   private _plannerService = inject(PlannerService);
+  private _globalConfigService = inject(GlobalConfigService);
   layoutService = inject(LayoutService);
 
+  readonly planView = viewChild<PlannerPlanViewComponent>('planViewRef');
+
   readonly T = T;
+
+  readonly isHideEmptyDays = computed(
+    () => !!this._globalConfigService.misc()?.isHideEmptyPlannerDays,
+  );
 
   private _days = toSignal(this._plannerService.days$, { initialValue: [] });
   private _plannerDayMap = toSignal(this._store.select(selectPlannerDayMap), {
@@ -74,5 +103,23 @@ export class PlannerComponent {
           }),
         );
       });
+  }
+
+  toggleHideEmptyDays(): void {
+    this._globalConfigService.updateSection('misc', {
+      isHideEmptyPlannerDays: !this.isHideEmptyDays(),
+    });
+  }
+
+  onDayPicked(date: Date | null): void {
+    if (!date) return;
+    const dayDate = getDbDateStr(date);
+    this._plannerService.revealDay(dayDate);
+    this.planView()?.scrollToDay(dayDate, true);
+  }
+
+  onCalendarDayTapped(dayDate: string): void {
+    this._plannerService.revealDay(dayDate);
+    this.planView()?.scrollToDay(dayDate);
   }
 }

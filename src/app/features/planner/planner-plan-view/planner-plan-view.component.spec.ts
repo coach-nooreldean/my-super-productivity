@@ -18,6 +18,7 @@ describe('PlannerPlanViewComponent', () => {
       'loadMoreDays',
       'resetScrollState',
       'ensureDayLoaded',
+      'revealDay',
     ]);
     mockPlannerService.days$ = of([]);
     mockPlannerService.isLoadingMore$ = new BehaviorSubject<boolean>(false);
