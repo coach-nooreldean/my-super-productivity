@@ -1,0 +1,132 @@
+<h2
+  mat-dialog-title
+  class="dialog-title"
+>
+  <mat-icon class="title-icon">{{
+    isFirstRun ? 'waving_hand' : 'account_circle'
+  }}</mat-icon>
+  <span>{{
+    (isFirstRun ? T.F.USER_PROFILE.WELCOME_TITLE : T.F.USER_PROFILE.EDIT_TITLE)
+      | translate
+  }}</span>
+</h2>
+
+<mat-dialog-content class="dialog-content">
+  @if (isFirstRun) {
+    <p class="welcome-subtitle">
+      {{ T.F.USER_PROFILE.WELCOME_SUBTITLE | translate }}
+    </p>
+  }
+
+  <!-- Avatar Preview Area -->
+  <div class="avatar-preview-section">
+    <div
+      class="avatar-circle"
+      [class.has-image]="avatarType === 'image' && avatar"
+      [class.has-preset]="avatarType === 'preset' && avatar"
+    >
+      @if (avatarType === 'image' && avatar) {
+        <img
+          [src]="avatar"
+          alt="Avatar Preview"
+          class="avatar-img"
+        />
+      } @else if (avatarType === 'preset' && avatar) {
+        <span class="avatar-preset">{{ avatar }}</span>
+      } @else if (initials) {
+        <span class="avatar-initials">{{ initials }}</span>
+      } @else {
+        <mat-icon class="avatar-placeholder-icon">person</mat-icon>
+      }
+    </div>
+
+    <!-- Avatar Action Buttons -->
+    <div class="avatar-action-buttons">
+      <input
+        #fileInput
+        type="file"
+        accept="image/png,image/jpeg,image/webp,image/gif"
+        hidden
+        (change)="onFileSelected($event)"
+      />
+      <button
+        mat-stroked-button
+        type="button"
+        (click)="fileInput.click()"
+        class="upload-btn"
+      >
+        <mat-icon>upload</mat-icon>
+        {{ T.F.USER_PROFILE.UPLOAD_IMAGE | translate }}
+      </button>
+
+      @if (avatar) {
+        <button
+          mat-button
+          type="button"
+          (click)="removeAvatar()"
+          color="warn"
+          class="remove-btn"
+        >
+          <mat-icon>delete</mat-icon>
+          {{ T.F.USER_PROFILE.REMOVE_IMAGE | translate }}
+        </button>
+      }
+    </div>
+  </div>
+
+  <!-- Presets Selection -->
+  <div class="preset-section">
+    <label class="preset-label">{{ T.F.USER_PROFILE.CHOOSE_PRESET | translate }}</label>
+    <div
+      class="preset-grid"
+      role="radiogroup"
+    >
+      @for (preset of presets; track preset) {
+        <button
+          type="button"
+          class="preset-item-btn"
+          [class.selected]="avatarType === 'preset' && avatar === preset"
+          (click)="selectPreset(preset)"
+          [attr.aria-label]="preset"
+        >
+          {{ preset }}
+        </button>
+      }
+    </div>
+  </div>
+
+  <!-- Name Input Field -->
+  <mat-form-field
+    appearance="outline"
+    class="name-field"
+  >
+    <mat-label>{{ T.F.USER_PROFILE.NAME_LABEL | translate }}</mat-label>
+    <input
+      matInput
+      [(ngModel)]="name"
+      [placeholder]="T.F.USER_PROFILE.NAME_PLACEHOLDER | translate"
+      (keydown.enter)="save()"
+      maxlength="50"
+      autocomplete="name"
+    />
+    <mat-icon matPrefix>badge</mat-icon>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button
+    mat-button
+    type="button"
+    (click)="skipOrCancel()"
+  >
+    {{ (isFirstRun ? T.F.USER_PROFILE.SKIP : T.G.CANCEL) | translate }}
+  </button>
+  <button
+    mat-flat-button
+    color="primary"
+    type="button"
+    (click)="save()"
+  >
+    {{ (isFirstRun ? T.F.USER_PROFILE.SAVE : T.G.SAVE) | translate }}
+  </button>
+</mat-dialog-actions>

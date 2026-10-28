@@ -92,6 +92,7 @@ import { OnboardingHintService } from './features/onboarding/onboarding-hint.ser
 import { QuickTourService } from './features/onboarding/quick-tour.service';
 import { MaterialIconsLoaderService } from './ui/material-icons-loader.service';
 import { BrowserTitleService } from './core/browser-title/browser-title.service';
+import { UserProfileService } from './core/user-profile/user-profile.service';
 
 const ENTRANCE_ANIMATION_DURATION = 1500;
 
@@ -174,6 +175,7 @@ export class AppComponent implements OnDestroy, AfterViewInit {
   private _agentCaptureService = inject(AgentCaptureService);
   readonly onboardingHintService = inject(OnboardingHintService);
   readonly quickTourService = inject(QuickTourService);
+  private _userProfileService = inject(UserProfileService);
 
   private _syncTriggerService = inject(SyncTriggerService);
   readonly workContextService = inject(WorkContextService);
@@ -298,6 +300,9 @@ export class AppComponent implements OnDestroy, AfterViewInit {
         void this._noteStartupBannerService.showLastNoteIfNeeded();
         this._syncSafetyBannerService.showReminderIfNeeded();
         void this._superSyncEncryptionMigrationBannerService.showBannerIfNeeded();
+        if (!this._userProfileService.hasSeenOnboarding()) {
+          this._userProfileService.openProfileDialog(true);
+        }
       });
 
     // ! For keyboard shortcuts to work correctly with any layouts (QWERTZ/AZERTY/etc) - user's keyboard layout must be presaved

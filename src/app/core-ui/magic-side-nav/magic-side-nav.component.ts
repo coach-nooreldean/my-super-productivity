@@ -24,6 +24,7 @@ import { MagicNavConfigService } from './magic-nav-config.service';
 import { lsSetItem, readBoolLS, readNumberLSBounded } from '../../util/ls-util';
 import { getPointerPosition } from '../../util/get-pointer-position';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatIcon } from '@angular/material/icon';
 import { NavMatMenuComponent } from './nav-mat-menu/nav-mat-menu.component';
 import { TaskService } from '../../features/tasks/task.service';
 import { LayoutService } from '../layout/layout.service';
@@ -42,6 +43,7 @@ import { SwipeDirective } from '../../ui/swipe-gesture/swipe.directive';
 import { DataInitStateService } from '../../core/data-init/data-init-state.service';
 import { TranslatePipe } from '@ngx-translate/core';
 import { T } from '../../t.const';
+import { UserProfileService } from '../../core/user-profile/user-profile.service';
 
 // 56px = 24px icon + 16px (var(--s2)) padding on each side, so the left-aligned
 // nav icons sit centered in the collapsed rail.
@@ -64,6 +66,7 @@ const SIDENAV_WIDTH_ANIMATION_DURATION_MS = 425;
     NavItemComponent,
     NavListTreeComponent,
     MatMenuModule,
+    MatIcon,
     NavMatMenuComponent,
     SwipeDirective,
     CdkTrapFocus,
@@ -107,8 +110,12 @@ export class MagicSideNavComponent implements OnDestroy, AfterViewInit {
   readonly T = T;
   readonly isMobile = this._layoutService.isXs;
   private readonly _initialState = this._getInitialState();
-
+  readonly userProfileService = inject(UserProfileService);
   activeWorkContextId = input<string | null>(null);
+
+  openUserProfileDialog(): void {
+    this.userProfileService.openProfileDialog();
+  }
 
   // Externally controlled mobile overlay visibility
   mobileVisibleChange = output<boolean>();

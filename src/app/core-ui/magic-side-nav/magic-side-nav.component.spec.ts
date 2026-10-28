@@ -16,6 +16,7 @@ import { TaskService } from '../../features/tasks/task.service';
 import { DataInitStateService } from '../../core/data-init/data-init-state.service';
 import { ScheduleExternalDragService } from '../../features/schedule/schedule-week/schedule-external-drag.service';
 import { NavActionItem, NavConfig, NavPluginItem } from './magic-side-nav.model';
+import { UserProfileService } from '../../core/user-profile/user-profile.service';
 
 describe('MagicSideNavComponent', () => {
   let fixture: ComponentFixture<MagicSideNavComponent>;
@@ -108,6 +109,17 @@ describe('MagicSideNavComponent', () => {
             activeDragRef: signal(null),
             setActiveTask: jasmine.createSpy('setActiveTask'),
             setCancelNextDrop: jasmine.createSpy('setCancelNextDrop'),
+          },
+        },
+        {
+          provide: UserProfileService,
+          useValue: {
+            hasProfile: signal(false),
+            displayName: signal(''),
+            avatar: signal(null),
+            avatarType: signal('initials'),
+            initials: signal(''),
+            openProfileDialog: jasmine.createSpy('openProfileDialog'),
           },
         },
       ],
@@ -277,6 +289,13 @@ describe('MagicSideNavComponent', () => {
 
       expect(action).not.toHaveBeenCalled();
       expect(navConfigServiceMock.onNavItemClick).toHaveBeenCalledOnceWith(item);
+    });
+
+    it('opens user profile dialog when openUserProfileDialog is called', () => {
+      fixture = TestBed.createComponent(MagicSideNavComponent);
+      const userProfileService = TestBed.inject(UserProfileService);
+      fixture.componentInstance.openUserProfileDialog();
+      expect(userProfileService.openProfileDialog).toHaveBeenCalled();
     });
   });
 });
