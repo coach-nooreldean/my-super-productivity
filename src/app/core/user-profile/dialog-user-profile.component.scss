@@ -1,0 +1,134 @@
+@use '../../../styles/_globals.scss' as *;
+
+.dialog-title {
+  display: flex;
+  align-items: center;
+  gap: var(--s);
+  margin-bottom: var(--s);
+
+  .title-icon {
+    color: var(--c-primary);
+  }
+}
+
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+  padding-top: var(--s);
+}
+
+.welcome-subtitle {
+  margin: 0 0 var(--s);
+  color: var(--text-color-muted, rgba(255, 255, 255, 0.7));
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.avatar-preview-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s);
+  margin: var(--s) 0;
+}
+
+.avatar-circle {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--state-hover);
+  border: 2px solid var(--separator-color, rgba(128, 128, 128, 0.3));
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+  .avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .avatar-preset {
+    font-size: 48px;
+    line-height: 1;
+    user-select: none;
+  }
+
+  .avatar-initials {
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--c-primary);
+    letter-spacing: 1px;
+    user-select: none;
+  }
+
+  .avatar-placeholder-icon {
+    font-size: 56px;
+    width: 56px;
+    height: 56px;
+    color: var(--text-color-muted, rgba(255, 255, 255, 0.5));
+  }
+}
+
+.avatar-action-buttons {
+  display: flex;
+  gap: var(--s);
+  align-items: center;
+}
+
+.preset-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-half, 4px);
+}
+
+.preset-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-color-muted, rgba(255, 255, 255, 0.7));
+}
+
+.preset-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 6px;
+
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+.preset-item-btn {
+  background: var(--state-hover);
+  border: 1px solid var(--separator-color, rgba(128, 128, 128, 0.2));
+  border-radius: 8px;
+  font-size: 20px;
+  padding: 6px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform 0.15s ease,
+    background-color 0.15s ease,
+    border-color 0.15s ease;
+
+  &:hover {
+    background: var(--state-pressed);
+    transform: scale(1.1);
+  }
+
+  &.selected {
+    border-color: var(--c-primary);
+    background: color-mix(in srgb, var(--c-primary) 18%, transparent);
+    transform: scale(1.1);
+  }
+}
+
+.name-field {
+  width: 100%;
+  margin-top: var(--s);
+}

@@ -102,6 +102,78 @@
         class="nav-list"
         role="list"
       >
+        <!-- User Profile Header -->
+        <li
+          class="nav-item user-profile-nav-item"
+          role="listitem"
+        >
+          <button
+            type="button"
+            class="user-profile-btn"
+            [class.compact]="!showText()"
+            (click)="openUserProfileDialog()"
+            [attr.aria-label]="
+              userProfileService.hasProfile()
+                ? userProfileService.displayName()
+                : (T.F.USER_PROFILE.SETUP_HINT | translate)
+            "
+            [title]="
+              userProfileService.hasProfile()
+                ? userProfileService.displayName()
+                : (T.F.USER_PROFILE.SETUP_HINT | translate)
+            "
+          >
+            <div
+              class="user-profile-avatar"
+              [class.has-image]="
+                userProfileService.avatarType() === 'image' && userProfileService.avatar()
+              "
+              [class.has-preset]="
+                userProfileService.avatarType() === 'preset' &&
+                userProfileService.avatar()
+              "
+            >
+              @if (
+                userProfileService.avatarType() === 'image' &&
+                  userProfileService.avatar();
+                as avatarImg
+              ) {
+                <img
+                  [src]="avatarImg"
+                  alt=""
+                  class="profile-avatar-img"
+                />
+              } @else if (
+                userProfileService.avatarType() === 'preset' &&
+                  userProfileService.avatar();
+                as avatarPreset
+              ) {
+                <span class="profile-avatar-preset">{{ avatarPreset }}</span>
+              } @else if (userProfileService.initials(); as initials) {
+                <span class="profile-avatar-initials">{{ initials }}</span>
+              } @else {
+                <mat-icon class="profile-avatar-icon">account_circle</mat-icon>
+              }
+            </div>
+
+            @if (showText()) {
+              <div class="user-profile-info">
+                <span class="user-profile-name">
+                  {{
+                    userProfileService.displayName() ||
+                      (T.F.USER_PROFILE.SETUP_HINT | translate)
+                  }}
+                </span>
+                <span class="user-profile-badge">
+                  {{ T.F.USER_PROFILE.TITLE | translate }}
+                </span>
+              </div>
+              <mat-icon class="user-profile-edit-icon">edit</mat-icon>
+            }
+          </button>
+        </li>
+        <hr class="nav-separator user-profile-separator" />
+
         @for (item of config().items; track item.id) {
           @switch (item.type) {
             @case ('separator') {

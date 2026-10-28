@@ -121,6 +121,10 @@ export enum LS {
 
   // Task view customizer
   TASK_VIEW_CUSTOMIZER_BY_CONTEXT = 'SUP_TASK_VIEW_CUSTOMIZER_BY_CONTEXT',
+
+  // User local profile (device-local, never synced)
+  USER_PROFILE = 'SUP_USER_PROFILE',
+  HAS_SEEN_PROFILE_ONBOARDING = 'SUP_HAS_SEEN_PROFILE_ONBOARDING',
 }
 
 // Prefix for device-local, never-synced note drafts (see LocalDraftService).

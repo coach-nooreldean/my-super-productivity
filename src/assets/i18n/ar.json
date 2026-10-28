@@ -105,6 +105,22 @@
     }
   },
   "F": {
+    "USER_PROFILE": {
+      "TITLE": "الملف الشخصي المحلي",
+      "WELCOME_TITLE": "أهلاً بك في Super Productivity!",
+      "WELCOME_SUBTITLE": "قم بإعداد ملفك الشخصي المحلي (الاسم والصورة). يتم حفظ هذه البيانات محلياً على جهازك فقط وبخصوصية تامة.",
+      "EDIT_TITLE": "تعديل الملف الشخصي",
+      "NAME_LABEL": "اسمك / اسم المستخدم",
+      "NAME_PLACEHOLDER": "مثال: نور الدين",
+      "AVATAR_LABEL": "الصورة الشخصية أو الرمز التعبيري",
+      "UPLOAD_IMAGE": "رفع صورة",
+      "CHOOSE_PRESET": "اختيار رمز / إيموجي",
+      "REMOVE_IMAGE": "إزالة الصورة",
+      "SKIP": "تخطي",
+      "SAVE": "حفظ",
+      "SETUP_HINT": "إعداد الملف الشخصي",
+      "DEFAULT_NAME": "مستخدم"
+    },
     "COMPLETED_TASKS": {
       "TITLE": "المهام المكتملة",
       "SEARCH_PLACEHOLDER": "بحث في المهام المكتملة...",

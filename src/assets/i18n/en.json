@@ -105,6 +105,22 @@
     }
   },
   "F": {
+    "USER_PROFILE": {
+      "TITLE": "Local Profile",
+      "WELCOME_TITLE": "Welcome to Super Productivity!",
+      "WELCOME_SUBTITLE": "Set up your local profile (name and avatar). This stays private on your device.",
+      "EDIT_TITLE": "Edit Profile",
+      "NAME_LABEL": "Your Name / Username",
+      "NAME_PLACEHOLDER": "e.g. Alex",
+      "AVATAR_LABEL": "Profile Picture or Avatar",
+      "UPLOAD_IMAGE": "Upload Image",
+      "CHOOSE_PRESET": "Choose Emoji / Icon",
+      "REMOVE_IMAGE": "Remove Image",
+      "SKIP": "Skip",
+      "SAVE": "Save Profile",
+      "SETUP_HINT": "Set up your profile",
+      "DEFAULT_NAME": "User"
+    },
     "COMPLETED_TASKS": {
       "TITLE": "Completed Tasks",
       "SEARCH_PLACEHOLDER": "Search completed tasks...",
